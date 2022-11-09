@@ -35,6 +35,10 @@ import { RequestReviewitemComponent } from './request/request-review-list/reques
 import { FootComponent } from './common/foot/foot.component';
 import { HeadComponent } from './common/head/head.component';
 import { MenuitemComponent } from './misc/menuitem/menuitem.component';
+import { RequestlineChangeComponent } from './requetline/requestline-change/requestline-change.component';
+import { RequestlineCreateComponent } from './requestline/requestline-create/requestline-create.component';
+import { RequestlineDetailComponent } from './requestline/requestline-detail/requestline-detail.component';
+import { RequestlineListComponent } from './requestline/requestline-list/requestline-list.component';
 
 export function startupServiceFactory(AppInit: AppInitService): Function {
   return () => AppInit.getSettings();
@@ -72,6 +76,10 @@ export function startupServiceFactory(AppInit: AppInitService): Function {
     FootComponent,
     HeadComponent,
     MenuitemComponent,
+    RequestlineChangeComponent,
+    RequestlineCreateComponent,
+    RequestlineDetailComponent,
+    RequestlineListComponent,
   ],
   imports: [
     BrowserModule, 
