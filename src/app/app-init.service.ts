@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class AppInitService {
 
-config: any;
+  config: any;
 
   constructor(
     private http: HttpClient
