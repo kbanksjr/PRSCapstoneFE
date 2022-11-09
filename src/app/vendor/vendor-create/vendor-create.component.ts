@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SystemService } from 'src/app/common/system.service';
 import { Vendor } from '../vendor.class';
 import { VendorService } from '../vendor.service';
 
@@ -10,28 +11,28 @@ import { VendorService } from '../vendor.service';
 })
 export class VendorCreateComponent implements OnInit {
 
-pageTitle: string = "Create Vendor";
-vendor: Vendor = new Vendor;
-isDetail: boolean = false;
+  pageTitle: string = "Vendor Creator";
+  ven: Vendor = new Vendor();
 
   constructor(
+    private sys: SystemService,
     private vensvc: VendorService,
-    private router: Router
+    private router: Router,
   ) { }
 
+  ngOnInit(): void {
+  }
+
   save(): void {
-    this.vensvc.create(this.vendor).subscribe({
+    this.vensvc.create(this.ven).subscribe({
       next: (res) => {
-        console.debug("Vendor created.");
-        this.router.navigateByUrl("/vendors/list");
+        console.debug("Vendor Created!");
+        this.router.navigateByUrl("/vendor/list");
       },
       error: (err) => {
         console.error(err);
       }
-    })
-  }
-
-  ngOnInit(): void {
+    });
   }
 
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { SystemService } from 'src/app/common/system.service';
 import { Vendor } from '../vendor.class';
 import { VendorService } from '../vendor.service';
@@ -11,30 +10,24 @@ import { VendorService } from '../vendor.service';
 })
 export class VendorListComponent implements OnInit {
 
-  pageTitle: string ="Vendor List";
-  vendors: Vendor[] = [];
-  searchCriteria: string = "";
-  //search and sort funcs
+  pageTitle: string = "Vendor List";
+  vens: Vendor[] = [];
 
   constructor(
-    private vensvc: VendorService,
     private sys: SystemService,
-    private router: Router
+    private vensvc: VendorService,
   ) { }
-
-//sortby func
 
   ngOnInit(): void {
     this.vensvc.list().subscribe({
       next: (res) => {
         console.debug("Vendors:", res);
-        this.vendors = res;
+        this.vens = res;
       },
       error: (err) => {
-        console.error(err);
+        console.debug(err);
       }
-    })
+    });
   }
-
 
 }

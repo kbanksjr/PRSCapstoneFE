@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SystemService } from 'src/app/common/system.service';
-import { User } from 'src/app/user/user.class';
 import { UserService } from 'src/app/user/user.service';
 import { Request } from '../request.class';
 import { RequestService } from '../request.service';
@@ -12,30 +12,31 @@ import { RequestService } from '../request.service';
 })
 export class RequestReviewComponent implements OnInit {
 
-  req: Request[] = [];
-  pageTitle: string = "-- Requests To Review --";
-  user: User[] = [];
+  pageTitle: string = "Requests Review List"
+  reqs: Request[] = [];
 
   constructor(
-    private reqsvc: RequestService,
     private sys: SystemService,
-    private usersvc: UserService
+    private reqsvc: RequestService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    if(this.sys.user.isReviewer === true) { 
+    this.sys.checkLogin();
     this.reqsvc.getReviews(this.sys.user.id).subscribe({
       next: (res) => {
-        console.debug("Reviews:", res);
-        console.debug("SysUserId:", this.sys.user.id);
-        this.req = res;
-
+        console.debug("Requests: ", res),
+        this.reqs = res;
       },
       error: (err) => {
         console.error(err);
       }
     });
-   }
+  }
 
-  } 
 }
+
+
+
+

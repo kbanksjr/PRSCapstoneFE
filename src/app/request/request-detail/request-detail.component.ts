@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SystemService } from 'src/app/common/system.service';
 import { Request } from '../request.class';
 import { RequestService } from '../request.service';
 
@@ -10,26 +11,34 @@ import { RequestService } from '../request.service';
 })
 export class RequestDetailComponent implements OnInit {
 
-  pageTitle: string = "-- Request Details --";
-  DetailPage: boolean = true;
-  req!: Request;
-  verifyRemoveButton: boolean = false;
+pageTitle: string = "Request Detail";
+req!: Request;
+IsDetailPage: boolean = true;
 
-  constructor(
-    private reqsvc: RequestService,
-    private route: ActivatedRoute,
-    private router: Router
-    
-  ) { }
 
-  remove(): void {
-    this.verifyRemoveButton = !this.verifyRemoveButton;
+constructor(
+  private sys: SystemService,
+  private reqsvc: RequestService,
+  private router: Router,
+  private route: ActivatedRoute
+) { }
+
+showVerifyButton: boolean = true;
+verifyButtonColor: string = "btn btn-secondary";
+
+  toggleVerifyButton(): void {
+    this.showVerifyButton = !this.showVerifyButton;
+    this.verifyButtonColor = (this.showVerifyButton ? "btn btn-secondary" : "btn btn-danger");
   }
 
-  verifyRemove(): void {
+  toRequestChangePage():void {
+    this.router.navigateByUrl(`/request/change/${this.req.id}`);
+  }
+
+  remove(): void {
     this.reqsvc.remove(this.req.id).subscribe({
       next: (res) => {
-        console.debug("Request deleted");
+        console.debug("Request Deleted!");
         this.router.navigateByUrl("/request/list");
       },
       error: (err) => {
@@ -39,21 +48,16 @@ export class RequestDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let id = +this.route.snapshot.params["id"];
+    let id = this.route.snapshot.params["id"];
     this.reqsvc.get(id).subscribe({
       next: (res) => {
         console.debug("Request:", res);
         this.req = res;
       },
       error: (err) => {
-        if(err.status === 404) {
-          this.router.navigateByUrl("/misc/e404");
-        }
-        else {
-          console.error(err);
-        }
+        console.error(err);
       }
-    }); 
+    });
   }
-}
 
+}

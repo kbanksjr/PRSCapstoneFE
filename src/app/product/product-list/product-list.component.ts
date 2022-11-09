@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { SystemService } from 'src/app/common/system.service';
 import { Vendor } from 'src/app/vendor/vendor.class';
 import { VendorService } from 'src/app/vendor/vendor.service';
@@ -14,30 +13,24 @@ import { ProductService } from '../product.service';
 export class ProductListComponent implements OnInit {
 
   pageTitle: string = "Product List";
-  searchCriteria: string = "";
-  products: Product[] = [];
-  product!: Product;
-  vendor!: Vendor;
-  name: string ="";
+  prods: Product[] = [];
+
   constructor(
-    private prodsvc: ProductService,
     private sys: SystemService,
-    private router: Router,
-    private vendsvc: VendorService
+    private prodsvc: ProductService,
   ) { }
 
-
-  ngOnInit(): void {  
+    ngOnInit(): void {
     this.prodsvc.list().subscribe({
       next: (res) => {
-        console.debug("Products:", res);
-        this.products = res;
+        console.debug("Products: ", res);
+        this.prods = res;
       },
       error: (err) => {
         console.error(err);
       }
-    })
+    });
+
   }
 
 }
-

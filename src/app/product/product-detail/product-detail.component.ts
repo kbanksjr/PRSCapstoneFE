@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SystemService } from 'src/app/common/system.service';
+import { Vendor } from 'src/app/vendor/vendor.class';
+import { VendorService } from 'src/app/vendor/vendor.service';
 import { Product } from '../product.class';
 import { ProductService } from '../product.service';
-import {MatFormFieldModule} from '@angular/material/form-field';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,47 +13,52 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 })
 export class ProductDetailComponent implements OnInit {
 
-pageTitle: string = "Product Detail";
-product!: Product;
-products: Product[] = [];
-isDetail: boolean = true;
-showRemove: boolean = true;
-
+  pageTitle: string = "Product Detail";
+  prod!: Product;
+  ven!: Vendor;
+  verifyDeleteButton: boolean = true;
+  verifyDeleteButtonColor: string = "btn btn-secondary";
 
   constructor(
-    private route: ActivatedRoute,
+    private sys: SystemService,
     private prodsvc: ProductService,
-    private router: Router
+    private vensvc: VendorService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
-  remove(): void {
-  this.showRemove = !this.showRemove;
+  toProductChangePage(): void {
+    this.router.navigateByUrl(`/product/change/${this.prod.id}`);
   }
 
-  verifyDelete(): void {
-    this.prodsvc.remove(this.product.id).subscribe({
+  toggleVerifyDelete(): void {
+    this.verifyDeleteButton = !this.verifyDeleteButton;
+    this.verifyDeleteButtonColor = this.verifyDeleteButton ? "btn btn-secondary" : "btn btn-danger";
+  }
+
+  remove(): void {
+    this.prodsvc.remove(this.prod.id).subscribe({
       next: (res) => {
-        console.debug("Product deleted");
-        this.router.navigateByUrl("/products/list");
+        console.debug("Product Deleted!", res)
+        this.router.navigateByUrl("/product/list");
       },
       error: (err) => {
-        console.error("delete failed", err);
+        console.error(err);
       }
-    })
+    });
   }
-
 
   ngOnInit(): void {
     let id = this.route.snapshot.params["id"];
     this.prodsvc.get(id).subscribe({
       next: (res) => {
-        console.debug("Product:", res);
-        this.product = res;
+        console.debug("Product: ", res);
+        this.prod = res;
       },
       error: (err) => {
         console.error(err);
       }
-    })
+    });
   }
 
 }

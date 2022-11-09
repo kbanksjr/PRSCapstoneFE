@@ -1,17 +1,20 @@
-<div id="login">
-    <table class="table table-sm" id="logtable">
-        <tr>
-            <th>Username</th>
-            <td><input [(ngModel)]="username"></td>
-        </tr>
-        <tr>
-            <th>Password</th>
-            <td><input [(ngModel)]="password" type="password"></td>
-        </tr>
+<div class="mx-auto">
+    <table>
+        <tbody>
+            <tr>
+                <td>Username:</td>
+                <td><input [(ngModel)]="username" type="text"></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input [(ngModel)]="password" type="password"></td>
+            </tr>
+            <tr>
+                <td>
+                    <button (click)="login()" class="btn btn-primary">Login</button>
+                </td>
+            </tr>
+        </tbody>
     </table>
-    <div>
-        <span><button (click)="userLogin()" class="btn btn-dark" id="btnlogin">Login</button></span>
-        <span id="logmsg">{{ message }}</span>
-    </div>
+    <span class="text-danger font-italic">{{message}}</span>
 </div>
-

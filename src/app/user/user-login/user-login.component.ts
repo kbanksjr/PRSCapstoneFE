@@ -16,29 +16,27 @@ export class UserLoginComponent implements OnInit {
 
   constructor(
     private sys: SystemService,
-    private router: Router,
-    private usersvc: UserService
+    private usersvc: UserService,
+    private router: Router
   ) { }
 
-userLogin(): void {
-  this.sys.user = null;
-  this.usersvc.login(this.username, this.password).subscribe({
-    next: (res) => {
-      console.debug("Login Success:", res);
-      this.sys.user = res;
-      this.router.navigateByUrl("/users/list");
-    },
-    error: (err) => {
-      if(err.status === 404) {
-        this.message = "Username and Password not found.";
-      } else 
-      {console.error(err)};
-    }
-  })
-}
+  login(): void {
+    this.sys.user = null;
+    this.usersvc.login(this.username, this.password).subscribe({
+      next: (res) => {
+        console.debug("User:", res);
+        this.sys.user = res;
+        this.router.navigateByUrl("/user/list");
+      },
+      error: (err) => {
+        if(err.status === 404){
+          this.message = "Username and/or Password not found."
+        }
+      }
+    })
+  }
 
   ngOnInit(): void {
   }
 
 }
-

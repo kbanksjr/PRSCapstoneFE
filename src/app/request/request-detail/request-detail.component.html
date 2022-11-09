@@ -1,45 +1,49 @@
 <div id="component">
-    <prs-head [pageTitle]="pageTitle"></prs-head>
-    <main id="main"><br>
-        <table class="table table-sm" *ngIf="req">
+    <div>
+        <app-head [pageTitle]="pageTitle"></app-head>
+    </div>
+
+    <main id="main">
+        <table class="table  table-sm" *ngIf="req">
             <tbody>
                 <tr>
-                    <th>Id</th>
+                    <td>Id</td>
                     <td><input [(ngModel)]="req.id" type="number" disabled></td>
-                </tr><tr>
-                    <th>Description</th>
-                    <td><input [(ngModel)]="req.description" [disabled]="DetailPage" size="25"></td>
-                </tr><tr>
-                    <th>Justification</th>
-                    <td><input [(ngModel)]="req.justification" [disabled]="DetailPage" size="25"></td>
-                </tr><tr>
-                    <th>Delivery Mode</th>
-                    <td><input [(ngModel)]="req.deliveryMode" [disabled]="DetailPage" size="25"></td>
-                </tr><tr>
-                    <th>Status</th>
-                    <td><input [(ngModel)]="req.status" [disabled]="DetailPage" size="25"></td>
-                </tr><tr>
-                    <th>Total</th>
-                    <td><input [(ngModel)]="req.total" type="number"  [disabled]="DetailPage" size="25"></td>
-                </tr><tr>
-                    <th>User</th>
-                    <td><input [(ngModel)]="req.user.username" [disabled]="DetailPage" size="25"></td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td><input [(ngModel)]="req.description" type="text" disabled></td>
+                </tr>
+                <tr>
+                    <td>Justification</td>
+                    <td><input [(ngModel)]="req.justification" type="text" disabled></td>
+                </tr>
+                <tr>
+                    <td>Delivery Mode</td>
+                    <td><input [(ngModel)]="req.deliveryMode" type="text" disabled></td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td><input [(ngModel)]="req.status" type="text" disabled></td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td><input [(ngModel)]="req.total" type="number" disabled></td>
+                </tr>
+                <tr>
+                    <td>User</td>
+                    <td><input [(ngModel)]="req.user.username" type="text" disabled></td>
+                </tr>
+               
             </tbody>
         </table>
-        <div id="Dbutton">
-            <table class="table table-sm">
-                <tr>
-                    <th></th>
-                    <td id="tdButton">
-                        <button id="removeBtn" (click)="remove()" class="btn btn-danger">Delete Request</button>
-                        <span *ngIf="verifyRemoveButton">
-                            &nbsp;&nbsp;&nbsp;----> 
-                            <button (click)="verifyRemove()" class="btn btn-danger">Please Verify Delete</button> <----
-                        </span>
-                    </td>
-                </tr>
-            </table>
-        </div>
+        <button (click)="toRequestChangePage()" class="btn btn-primary">Edit</button> |
+        <button (click)="toggleVerifyButton()" class="btn btn-danger">Delete</button> |
+            <button (click)="remove()" class="{{verifyButtonColor}}" [disabled]="showVerifyButton">Verify Delete</button>
     </main>
+
+    <div>
+        <app-foot></app-foot>
+    </div>
 </div>
 

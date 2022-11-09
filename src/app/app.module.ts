@@ -30,8 +30,11 @@ import { RequestChangeComponent } from './request/request-change/request-change.
 import { RequestCreateComponent } from './request/request-create/request-create.component';
 import { RequestDetailComponent } from './request/request-detail/request-detail.component';
 import { RequestListComponent } from './request/request-list/request-list.component';
-import { RequestReviewComponent } from './request/request-review/request-review.component';
-import { RequestReviewitemComponent } from './request/request-reviewitem/request-reviewitem.component';
+import { RequestReviewComponent } from './request/request-review-detail/request-review.component';
+import { RequestReviewitemComponent } from './request/request-review-list/request-reviewitem.component';
+import { FootComponent } from './common/foot/foot.component';
+import { HeadComponent } from './common/head/head.component';
+import { MenuitemComponent } from './misc/menuitem/menuitem.component';
 
 export function startupServiceFactory(AppInit: AppInitService): Function {
   return () => AppInit.getSettings();
@@ -66,6 +69,9 @@ export function startupServiceFactory(AppInit: AppInitService): Function {
     RequestListComponent,
     RequestReviewComponent,
     RequestReviewitemComponent,
+    FootComponent,
+    HeadComponent,
+    MenuitemComponent,
   ],
   imports: [
     BrowserModule, 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { SystemService } from 'src/app/common/system.service';
 import { Vendor } from '../vendor.class';
 import { VendorService } from '../vendor.service';
 
@@ -10,38 +11,39 @@ import { VendorService } from '../vendor.service';
 })
 export class VendorChangeComponent implements OnInit {
 
-  pageTitle: string = "Change Vendor";
-  vendor!: Vendor;
+  pageTitle: string = "Vendor Editor";
+  ven!: Vendor;
 
   constructor(
-    private router: Router,
+    private sys: SystemService,
     private vensvc: VendorService,
+    private router: Router,
     private route: ActivatedRoute
   ) { }
 
-    save(): void {
-      this.vensvc.change(this.vendor).subscribe({
-        next: (res) => {
-          console.debug("Vendor Changed", res);
-          this.router.navigateByUrl("/vendors/list");
-        },
-        error: (err) => {
-          console.error(err);
-        }
-      })
-    }
+  save(): void {
+    this.vensvc.change(this.ven).subscribe({
+      next: (res) => {
+        console.debug("Changes to Vendor Saved!");
+        this.router.navigateByUrl("/vendor/list");
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+  }
 
   ngOnInit(): void {
     let id = this.route.snapshot.params["id"];
     this.vensvc.get(id).subscribe({
       next: (res) => {
         console.debug("Vendor:", res);
-        this.vendor = res;
+        this.ven = res;
       },
       error: (err) => {
         console.error(err);
       }
-    })
+    });
   }
 
 }

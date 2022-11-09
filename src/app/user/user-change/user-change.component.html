@@ -1,43 +1,54 @@
-<app-menu></app-menu>
-<h5>{{pageTitle}}</h5>
-<div>
-    <table class="table table-sm" *ngIf="user">
-        <tbody>
-            <tr>
-                <th>ID</th>
-                <td><input [(ngModel)]="user.id" type="number" disabled></td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td><input [(ngModel)]="user.username" type="text" [disabled]="isDetail" maxlength="30"></td>
-            </tr>
-            <tr>
-                <th>First Name</th>
-                <td><input [(ngModel)]="user.firstname" type="text" [disabled]="isDetail" maxlength="30"></td>
-            </tr>
-            <tr>
-                <th>Last Name</th>
-                <td><input [(ngModel)]="user.lastname" type="text" [disabled]="isDetail" maxlength="30"></td>
-            </tr>
-            <tr>
-                <th>Phone</th>
-                <td><input [(ngModel)]="user.phone" type="text" [disabled]="isDetail" maxlength="15"></td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td><input [(ngModel)]="user.email" type="text" [disabled]="isDetail" maxlength="50"></td>
-            </tr>
-            <tr>
-                <th>Reviewer</th>
-                <td><input [(ngModel)]="user.isReviewer" type="checkbox" [disabled]="isDetail"></td>
-            </tr>
-            <tr>
-                <th>isAdmin</th>
-                <td><input [(ngModel)]="user.isAdmin" type="checkbox" [disabled]="isDetail"></td>
-            </tr>
-        </tbody>
-    </table>
-    <div> 
-        <button (click)="save()" class="btn btn-success">save</button>
+<div id="component">
+    <div>
+        <app-head [pageTitle]="pageTitle"></app-head>
+    </div>
+
+    <main id="main">
+        <table class="table table-sm" *ngIf="user">
+            <tbody>
+                <tr>
+                    <td>Id</td>
+                    <td><input [(ngModel)]="user.id" type="number" disabled></td>
+                </tr>
+                <tr>
+                    <td>User Name</td>
+                    <td><input [(ngModel)]="user.username" type="text" [disabled]="IsDetailPage" size="40"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input [(ngModel)]="user.password" type="password" [disabled]="IsDetailPage" size="40"></td>
+                </tr>
+                <tr>
+                    <td>First Name</td>
+                    <td><input [(ngModel)]="user.firstname" type="text" [disabled]="IsDetailPage" size="40"></td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td><input [(ngModel)]="user.lastname" type="text" [disabled]="IsDetailPage" size="40"></td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td><input [(ngModel)]="user.phone" type="text" [disabled]="IsDetailPage" size="40"></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input [(ngModel)]="user.email" type="text" [disabled]="IsDetailPage" size="40"></td>
+                </tr>
+                <tr>
+                    <td>Reviewer</td>
+                    <td><input [(ngModel)]="user.isReviewer" type="checkbox" [disabled]="IsDetailPage"></td>
+                </tr>
+                <tr>
+                    <td>Admin</td>
+                    <td><input [(ngModel)]="user.isAdmin" type="checkbox" [disabled]="IsDetailPage"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button (click)="save()" class="btn btn-primary">Save Changes</button>
+
+    </main>
+
+    <div>
+        <app-foot></app-foot>
     </div>
 </div>
