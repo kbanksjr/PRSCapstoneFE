@@ -1,0 +1,8 @@
+a {
+    text-decoration: none;
+    font-style: italic;
+}
+#search {
+    display:inline-block;
+    border-radius: 10px;
+}

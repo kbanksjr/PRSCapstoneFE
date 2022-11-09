@@ -1,0 +1,45 @@
+<div id="component">
+    <prs-head [pageTitle]="pageTitle"></prs-head>
+    <main id="main"><br>
+        <table class="table table-sm" *ngIf="req">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td><input [(ngModel)]="req.id" type="number" disabled></td>
+                </tr><tr>
+                    <th>Description</th>
+                    <td><input [(ngModel)]="req.description" [disabled]="DetailPage" size="25"></td>
+                </tr><tr>
+                    <th>Justification</th>
+                    <td><input [(ngModel)]="req.justification" [disabled]="DetailPage" size="25"></td>
+                </tr><tr>
+                    <th>Delivery Mode</th>
+                    <td><input [(ngModel)]="req.deliveryMode" [disabled]="DetailPage" size="25"></td>
+                </tr><tr>
+                    <th>Status</th>
+                    <td><input [(ngModel)]="req.status" [disabled]="DetailPage" size="25"></td>
+                </tr><tr>
+                    <th>Total</th>
+                    <td><input [(ngModel)]="req.total" type="number"  [disabled]="DetailPage" size="25"></td>
+                </tr><tr>
+                    <th>User</th>
+                    <td><input [(ngModel)]="req.user.username" [disabled]="DetailPage" size="25"></td>
+            </tbody>
+        </table>
+        <div id="Dbutton">
+            <table class="table table-sm">
+                <tr>
+                    <th></th>
+                    <td id="tdButton">
+                        <button id="removeBtn" (click)="remove()" class="btn btn-danger">Delete Request</button>
+                        <span *ngIf="verifyRemoveButton">
+                            &nbsp;&nbsp;&nbsp;----> 
+                            <button (click)="verifyRemove()" class="btn btn-danger">Please Verify Delete</button> <----
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </main>
+</div>
+
