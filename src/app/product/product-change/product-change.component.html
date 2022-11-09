@@ -1,0 +1,49 @@
+<div id="component">
+    <div>
+        <app-head [pageTitle]="pageTitle"></app-head>
+    </div>
+
+    <main id="main">
+        <table class="table table-sm" *ngIf="prod">
+            <tbody *ngIf="vens">
+                <tr>
+                    <td>Id</td>
+                    <td><input [(ngModel)]="prod.id" type="number" disabled=""></td>
+                </tr>
+                <tr>
+                    <td>Part Number</td>
+                    <td><input [(ngModel)]="prod.partNbr" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td><input [(ngModel)]="prod.name" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td><input [(ngModel)]="prod.price" min="1" type="number" oninput="validity.valid||(value='');"></td>
+                </tr>
+                <tr>
+                    <td>Unit</td>
+                    <td><input [(ngModel)]="prod.unit" type="text"></td>
+                </tr>
+                <tr>
+                    <td>PhotoPath</td>
+                    <td><input [(ngModel)]="prod.photoPath" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Vendor</td>
+                    <td>
+                        <select [(ngModel)]="prod.vendorId">
+                            <option value="{{v.id}}" *ngFor="let v of vens">{{v.name}}</option>
+                        </select>
+                    </td>
+                </tr>
+        </tbody>
+        </table>
+        <button (click)="save()" class="btn btn-primary">Save Changes</button>
+    </main>
+
+    <div>
+        <app-foot></app-foot>
+    </div>
+</div>
