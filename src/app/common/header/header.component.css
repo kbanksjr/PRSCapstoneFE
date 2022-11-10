@@ -1,0 +1,11 @@
+.title{
+    font-size: 38px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    text-shadow: 3px 2px rgb(184, 175, 175);
+}
+.class1{
+    background-color: cornflowerblue;
+    color: azure;
+}
+

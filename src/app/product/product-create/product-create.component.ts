@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SystemService } from 'src/app/common/system.service';
-import { Vendor } from 'src/app/vendor/vendor.class';
-import { VendorService } from 'src/app/vendor/vendor.service';
+import { Vendor } from '../../vendor/vendor.class';
+import { VendorService } from '../../vendor/vendor.service';
 import { Product } from '../product.class';
 import { ProductService } from '../product.service';
 
@@ -13,44 +13,39 @@ import { ProductService } from '../product.service';
 })
 export class ProductCreateComponent implements OnInit {
 
-  pageTitle: string = "Product Creator";
-  prod: Product = new Product;
-  vens: Vendor[] = [];
-
+  vends:Vendor[] = [];
+  pageTitle:string="Create Product"
+  prod: Product = new Product();
+  
   constructor(
-    private sys: SystemService,
     private prodsvc: ProductService,
-    private vensvc: VendorService,
+    private syssvc: SystemService,
     private router: Router,
+    private vendsvc: VendorService
   ) { }
 
-  save(): void {
-    this.prod.vendorId = + this.prod.vendorId;
+  save(): void{
     this.prodsvc.create(this.prod).subscribe({
       next: (res) => {
-        console.debug("Created Product!");
-        this.router.navigateByUrl("/product/list");
+        console.log(res);
+        this.router.navigateByUrl("/Products")
       },
       error: (err) => {
-        console.error(err);
+        console.debug(err);
       }
-    });
+    })
   }
 
   ngOnInit(): void {
-    this.getAllVendors();
-  }
-
-  getAllVendors(): void {
-    this.vensvc.list().subscribe({
+    this.vendsvc.list().subscribe({
       next: (res) => {
-        console.debug("Vendors: ", res);
-        this.vens = res;
+        console.log("Vendors:",res)
+        this.vends = res
       },
-      error: (err) => {
+      error: (err) =>{
         console.error(err);
-      }
-    });
+  }
+  })
   }
 
 }

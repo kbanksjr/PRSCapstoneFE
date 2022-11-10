@@ -11,41 +11,38 @@ import { UserService } from '../user.service';
 })
 export class UserChangeComponent implements OnInit {
 
-  pageTitle: string = "User Editor";
-  IsDetailPage: boolean = false;
-  user!: User;
-
-
+  user!:User;
+  titlePage="Edit User"
   constructor(
-    private sys: SystemService,
     private usersvc: UserService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private syssvc: SystemService
   ) { }
 
-    save(): void {
-      this.usersvc.change(this.user).subscribe({
-        next: (res) => {
-          console.debug("Changes to User Saved!");
-          this.router.navigateByUrl("/user/list");
-        },
-        error: (err) => {
-          console.error(err);
-        }
-      });
-    }
-
-  ngOnInit(): void {
-    let id = this.route.snapshot.params["id"];
-    this.usersvc.get(id).subscribe({
-      next: (res) => {
-        console.debug("User:", res);
-        this.user = res;
+  save():void{
+    this.usersvc.change(this.user).subscribe({
+      next:(res) => {
+        console.debug("User Changed")
+        this.router.navigateByUrl("/Users")
       },
-      error: (err) => {
+      error:(err)=>{
         console.error(err);
       }
-    });
+    })
+  }
+
+  ngOnInit(): void {
+    let id = +this.route.snapshot.params["id"];
+    this.usersvc.get(id).subscribe({
+      next: (res) => {
+        console.debug("Vendor:", res)
+        this.user = res
+      },
+      error: (err) => {
+        console.error(err)
+      }
+    })
   }
 
 }

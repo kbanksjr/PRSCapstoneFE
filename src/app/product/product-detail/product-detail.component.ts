@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SystemService } from 'src/app/common/system.service';
-import { Vendor } from 'src/app/vendor/vendor.class';
-import { VendorService } from 'src/app/vendor/vendor.service';
 import { Product } from '../product.class';
 import { ProductService } from '../product.service';
 
@@ -13,52 +11,46 @@ import { ProductService } from '../product.service';
 })
 export class ProductDetailComponent implements OnInit {
 
-  pageTitle: string = "Product Detail";
-  prod!: Product;
-  ven!: Vendor;
-  verifyDeleteButton: boolean = true;
-  verifyDeleteButtonColor: string = "btn btn-secondary";
+  showVerifyButton:boolean = false;
+  titlePage="Product Detail"
+  prod!:Product;
 
   constructor(
-    private sys: SystemService,
     private prodsvc: ProductService,
-    private vensvc: VendorService,
+    private route: ActivatedRoute,
     private router: Router,
-    private route: ActivatedRoute
+    private syssvc: SystemService
   ) { }
 
-  toProductChangePage(): void {
-    this.router.navigateByUrl(`/product/change/${this.prod.id}`);
+  warning():void{
+    this.showVerifyButton = !this.showVerifyButton
   }
 
-  toggleVerifyDelete(): void {
-    this.verifyDeleteButton = !this.verifyDeleteButton;
-    this.verifyDeleteButtonColor = this.verifyDeleteButton ? "btn btn-secondary" : "btn btn-danger";
-  }
 
-  remove(): void {
+  deleteConfirm():void{
     this.prodsvc.remove(this.prod.id).subscribe({
-      next: (res) => {
-        console.debug("Product Deleted!", res)
-        this.router.navigateByUrl("/product/list");
+      next:(res)=>{
+        console.debug("Product Deleted")
+        this.router.navigateByUrl("/Products")
       },
-      error: (err) => {
-        console.error(err);
+      error:(err) =>{
+        console.error(err)
       }
-    });
+    })
   }
 
   ngOnInit(): void {
-    let id = this.route.snapshot.params["id"];
+    let id = +this.route.snapshot.params["id"];
     this.prodsvc.get(id).subscribe({
-      next: (res) => {
-        console.debug("Product: ", res);
-        this.prod = res;
+      next:(res)=>{
+        console.log("Product:",res)
+        this.prod = res
       },
       error: (err) => {
-        console.error(err);
+        console.error(err)
       }
-    });
+    })
   }
-
 }
+
+

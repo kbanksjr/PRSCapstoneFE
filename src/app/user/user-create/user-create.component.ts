@@ -11,28 +11,30 @@ import { UserService } from '../user.service';
 })
 export class UserCreateComponent implements OnInit {
 
-  pageTitle: string = "User Creator";
+  pageTitle:string="Create User"
   user: User = new User();
-
+  
   constructor(
-    private sys: SystemService,
     private usersvc: UserService,
+    private syssvc: SystemService,
     private router: Router
   ) { }
-
-  save(): void {
-    this.usersvc.create(this.user).subscribe({
-      next: (res) => {
-        console.debug("User Created!");
-        this.router.navigateByUrl("/user/list");
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    })
-  }
-
-  ngOnInit(): void {
-  }
-
+  
+  
+    save(): void{
+      this.usersvc.create(this.user).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.router.navigateByUrl("/Users")
+        },
+        error: (err) => {
+          console.debug(err);
+        }
+      })
+    }
+  
+  
+    ngOnInit(): void {
+      this.syssvc.verifyUser();
+    }
 }

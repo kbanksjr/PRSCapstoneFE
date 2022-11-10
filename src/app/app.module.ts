@@ -1,28 +1,10 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './misc/home/home.component';
-import { AboutComponent } from './misc/about/about.component';
-import { E404Component } from './misc/e404/e404.component';
-import { MenuComponent } from './misc/menu/menu.component';
-import { UserListComponent } from './user/user-list/user-list.component';
-import { UserDetailComponent } from './user/user-detail/user-detail.component';
-import { UserCreateComponent } from './user/user-create/user-create.component';
-import { UserChangeComponent } from './user/user-change/user-change.component';
-import { HeadComponent } from './common/head/head.component';
-import { FootComponent } from './common/footer/foot.component';
-import { UserLoginComponent } from './user/user-login/user-login.component';
-import { AppInitService } from './app-init.service';
-import { BoolDisplayPipe } from './common/bool-display.pipe';
-import { VendorListComponent } from './vendor/vendor-list/vendor-list.component';
-import { VendorDetailComponent } from './vendor/vendor-detail/vendor-detail.component';
-import { VendorCreateComponent } from './vendor/vendor-create/vendor-create.component';
-import { VendorChangeComponent } from './vendor/vendor-change/vendor-change.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { ProductCreateComponent } from './product/product-create/product-create.component';
@@ -31,37 +13,33 @@ import { RequestListComponent } from './request/request-list/request-list.compon
 import { RequestDetailComponent } from './request/request-detail/request-detail.component';
 import { RequestCreateComponent } from './request/request-create/request-create.component';
 import { RequestChangeComponent } from './request/request-change/request-change.component';
-import { RejectionPipe } from './request/rejection.pipe';
-import { RequestLineListComponent } from './requestline/requestline-list/requestline-list.component';
+import { RequestlineListComponent } from './requestline/requestline-list/requestline-list.component';
 import { RequestlineDetailComponent } from './requestline/requestline-detail/requestline-detail.component';
-import { RequestLineCreateComponent } from './requestline/requestline-create/requestline-create.component';
-import { RequestLineChangeComponent } from './requestline/requestline-change/requestline-change.component';
-import { RequestReviewComponent } from './request/request-review-list/request-reviewitem.component';
-import { RequestReviewDetailComponent } from './request/request-review/request-review.component';
-
-export function startupServiceFactory(appInit: AppInitService) : Function {
-  return () => appInit.getSettings();
-}
+import { RequestlineCreateComponent } from './requestline/requestline-create/requestline-create.component';
+import { RequestlineChangeComponent } from './requestline/requestline-change/requestline-change.component';
+import { UserListComponent } from './user/user-list/user-list.component';
+import { UserDetailComponent } from './user/user-detail/user-detail.component';
+import { UserCreateComponent } from './user/user-create/user-create.component';
+import { UserChangeComponent } from './user/user-change/user-change.component';
+import { UserLoginComponent } from './user/user-login/user-login.component';
+import { VendorListComponent } from './vendor/vendor-list/vendor-list.component';
+import { VendorDetailComponent } from './vendor/vendor-detail/vendor-detail.component';
+import { VendorCreateComponent } from './vendor/vendor-create/vendor-create.component';
+import { VendorChangeComponent } from './vendor/vendor-change/vendor-change.component';
+import { HomeComponent } from './misc/home/home.component';
+import { AboutComponent } from './misc/about/about.component';
+import { E404Component } from './misc/e404/e404.component';
+import { MenuComponent } from './misc/menu/menu.component';
+import { RequestReviewComponent } from './request/request-review/request-review.component';
+import { HeaderComponent } from './common/header/header.component';
+import { FooterComponent } from './common/footer/footer.component';
+import { BoolDisplayPipe } from './common/bool-display.pipe';
+import { ReviewListComponent } from './requestline/review-list/review-list.component';
+import { ReviewItemComponent } from './requestline/review-item/review-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    AboutComponent,
-    E404Component,
-    MenuComponent,
-    HeadComponent,
-    UserListComponent,
-    UserDetailComponent,
-    UserCreateComponent,
-    UserChangeComponent,
-    FootComponent,
-    UserLoginComponent,
-    BoolDisplayPipe,
-    VendorListComponent,
-    VendorDetailComponent,
-    VendorCreateComponent,
-    VendorChangeComponent,
     ProductListComponent,
     ProductDetailComponent,
     ProductCreateComponent,
@@ -70,28 +48,35 @@ export function startupServiceFactory(appInit: AppInitService) : Function {
     RequestDetailComponent,
     RequestCreateComponent,
     RequestChangeComponent,
-    RejectionPipe,
-    RequestLineListComponent,
+    RequestlineListComponent,
     RequestlineDetailComponent,
-    RequestLineCreateComponent,
-    RequestLineChangeComponent,
-    RequestReviewDetailComponent,
-    RequestReviewComponent
+    RequestlineCreateComponent,
+    RequestlineChangeComponent,
+    UserListComponent,
+    UserDetailComponent,
+    UserCreateComponent,
+    UserChangeComponent,
+    UserLoginComponent,
+    VendorListComponent,
+    VendorDetailComponent,
+    VendorCreateComponent,
+    VendorChangeComponent,
+    HomeComponent,
+    AboutComponent,
+    E404Component,
+    MenuComponent,
+    RequestReviewComponent,
+    HeaderComponent,
+    FooterComponent,
+    BoolDisplayPipe,
+    ReviewListComponent,
+    ReviewItemComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
+    AppRoutingModule, FormsModule, HttpClientModule
   ],
-  providers: [
-    AppInitService, {
-      provide: APP_INITIALIZER,
-      useFactory: startupServiceFactory,
-        deps: [AppInitService],
-        multi: true
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

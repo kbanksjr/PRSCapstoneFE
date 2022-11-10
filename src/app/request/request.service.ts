@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SystemService } from '../common/system.service';
 import { Request } from './request.class';
 
 @Injectable({
@@ -9,47 +8,28 @@ import { Request } from './request.class';
 })
 export class RequestService {
 
-  baseurl: string = `${this.sys.baseurl}/requests`;
+  baseurl:string="http://localhost:5000/api/Requests"
+  reqs:Request[]=[];
 
   constructor(
-    private sys: SystemService,
     private http: HttpClient
   ) { }
 
-  list(): Observable<Request[]> {
-    return this.http.get(`${this.baseurl}`) as Observable<Request[]>;
+  list(): Observable<Request[]>{
+    return this.http.get(`${this.baseurl}`) as Observable<Request[]>
   }
 
-  get(id: number): Observable<Request> {
-    return this.http.get(`${this.baseurl}/${id}`) as Observable<Request>;
+  get(id:number): Observable<Request>{
+    return this.http.get(`${this.baseurl}/${id}`) as Observable<Request>
   }
 
-      getReviews(userId: number): Observable<Request[]> {
-        return this.http.get(`${this.baseurl}/reviews/${userId}`) as Observable<Request[]>;
-      }
-
-  create(req: Request): Observable<Request> {
-    return this.http.post(`${this.baseurl}`, req) as Observable<Request>;
+  create(req:Request): Observable<Request>{
+    return this.http.post(`${this.baseurl}`, req) as Observable<Request>
   }
-
-  
-  change(req: Request): Observable<any> {
-    return this.http.put(`${this.baseurl}/${req.id}`, req) as Observable<any>;
+  change(req:Request): Observable<Request>{
+    return this.http.put(`${this.baseurl}/${req.id}`, req) as Observable<Request>
   }
-
-      review(req: Request): Observable<any> {
-        return this.http.put(`${this.baseurl}/review/${req.id}`, req) as Observable<any>;
-      }
-
-      approve(req: Request): Observable<any> {
-        return this.http.put(`${this.baseurl}/approve/${req.id}`, req) as Observable<any>;
-      }
-
-      reject(req: Request): Observable<any> {
-        return this.http.put(`${this.baseurl}/reject/${req.id}`, req) as Observable<any>;
-      }
-
-  remove(id: number): Observable<any> {
-    return this.http.delete(`${this.baseurl}/${id}`) as Observable<any>;
+  remove(id:number): Observable<any>{
+    return this.http.delete(`${this.baseurl}/${id}`) as Observable<any>
   }
 }

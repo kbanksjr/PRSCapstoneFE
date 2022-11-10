@@ -1,49 +1,62 @@
-<div id="component">
-    <div>
-        <app-head [pageTitle]="pageTitle"></app-head>
-    </div>
 
-    <main id="main">
-        <table class="table  table-sm" *ngIf="req">
-            <tbody>
-                <tr>
-                    <td>Id</td>
-                    <td><input [(ngModel)]="req.id" type="number" disabled></td>
-                </tr>
-                <tr>
-                    <td>Description</td>
-                    <td><input [(ngModel)]="req.description" type="text" disabled></td>
-                </tr>
-                <tr>
-                    <td>Justification</td>
-                    <td><input [(ngModel)]="req.justification" type="text" disabled></td>
-                </tr>
-                <tr>
-                    <td>Delivery Mode</td>
-                    <td><input [(ngModel)]="req.deliveryMode" type="text" disabled></td>
-                </tr>
-                <tr>
-                    <td>Status</td>
-                    <td><input [(ngModel)]="req.status" type="text" disabled></td>
-                </tr>
-                <tr>
-                    <td>Total</td>
-                    <td><input [(ngModel)]="req.total" type="number" disabled></td>
-                </tr>
-                <tr>
-                    <td>User</td>
-                    <td><input [(ngModel)]="req.user.username" type="text" disabled></td>
-                </tr>
-               
-            </tbody>
-        </table>
-        <button (click)="toRequestChangePage()" class="btn btn-primary">Edit</button> |
-        <button (click)="toggleVerifyButton()" class="btn btn-danger">Delete</button> |
-            <button (click)="remove()" class="{{verifyButtonColor}}" [disabled]="showVerifyButton">Verify Delete</button>
-    </main>
+<app-header [pageTitle]="titlePage"></app-header>
+<main>
 
-    <div>
-        <app-foot></app-foot>
-    </div>
-</div>
+    <table *ngIf="req" class="table table-striped">
+        
+    <tbody>
+        <tr>
+            <td class="prop">Id</td>
+            <td><input class="id" [(ngModel)]="req.id" type="number"  disabled></td>
+            
+        </tr>
+        <tr>
+            <td class="prop">Description</td>
+<td><input [(ngModel)]="req.description" disabled></td>
+</tr>
 
+<tr>
+<td class="prop">Justification</td>
+<td><input [(ngModel)]="req.justification" disabled></td>
+</tr>
+
+<tr>
+<td class="prop">Rejection Reason</td>
+<td><input [(ngModel)]="req.rejectionReason" disabled></td>
+</tr>
+
+<tr>
+    <td class="prop">Delivery Mode</td>
+    <td><input [(ngModel)]="req.deliveryMode" disabled></td>
+</tr>
+
+<tr>
+    <td class="prop">Status</td>
+    <td><input [(ngModel)]="req.status" disabled></td>
+</tr>
+
+<tr>
+    <td class="prop">Total</td>
+    <td><input [(ngModel)]="req.total" disabled></td>
+</tr>
+<tr>
+    <td class="prop">User</td>
+    <td><input [(ngModel)]="req.user.username" disabled></td>
+</tr>
+
+
+</tbody>
+
+
+</table>
+<button class="btn btn-secondary" (click)="warning()" ngClass="btn-clicked" style="margin-left: 7.3%;">Delete</button>
+<span *ngIf="showVerifyButton">
+&nbsp;
+<span class="prop" style="margin-top: 0px;">Please click confirm to Delete &nbsp;</span>
+<button (click)="deleteConfirm()" class="btn btn-danger">Confirm</button>
+<p class="danger">This action can not be reversed</p>
+</span>
+
+</main>
+
+<app-footer></app-footer>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SystemService } from 'src/app/common/system.service';
-import { Vendor } from 'src/app/vendor/vendor.class';
-import { VendorService } from 'src/app/vendor/vendor.service';
+import { Vendor } from '../../vendor/vendor.class';
+import { VendorService } from '../../vendor/vendor.service';
 import { Product } from '../product.class';
 import { ProductService } from '../product.service';
 
@@ -13,56 +13,53 @@ import { ProductService } from '../product.service';
 })
 export class ProductChangeComponent implements OnInit {
 
-  pageTitle: string = "Product Editor";
-  prod!: Product;
-  vens: Vendor[] = [];
-  venName: string = "";
+  vends:Vendor[] = [];
+  prod!:Product;
+  titlePage="Edit Product"
 
   constructor(
-    private sys: SystemService,
-    private prodsvc: ProductService,
-    private vensvc: VendorService,
+    private prodsvc:ProductService,
+    private route: ActivatedRoute,
     private router: Router,
-    private route: ActivatedRoute
+    private syssvc: SystemService,
+    private vendsvc: VendorService
   ) { }
 
-  save(): void {
-    this.prod.vendorId = + this.prod.vendorId;
+
+
+  save():void{
     this.prodsvc.change(this.prod).subscribe({
-      next: (res) => {
-        console.debug("Changes to Product Saved!");
-        this.router.navigateByUrl("/product/list");
+      next:(res) => {
+        console.debug("Product Changed")
+        this.router.navigateByUrl("/Products")
       },
-      error: (err) => {
+      error:(err)=>{
         console.error(err);
       }
-    });
+    })
   }
 
   ngOnInit(): void {
-    this.getAllVendors();
-    let id = this.route.snapshot.params["id"];
+    let id = +this.route.snapshot.params["id"];
     this.prodsvc.get(id).subscribe({
       next: (res) => {
-        console.debug("Product: ", res);
-        this.prod = res;
+        console.debug("Product:", res)
+        this.prod = res
       },
       error: (err) => {
-        console.error(err);
+        console.error(err)
       }
-    });
-  }
-
-  getAllVendors(): void {
-    this.vensvc.list().subscribe({
+    })
+    this.vendsvc.list().subscribe({
       next: (res) => {
-        console.debug("Vendors: ", res);
-        this.vens = res;
+        console.log("Vendors:",res)
+        this.vends = res
       },
-      error: (err) => {
+      error: (err) =>{
         console.error(err);
-      }
-    });
   }
-
+  })
+  }
 }
+
+

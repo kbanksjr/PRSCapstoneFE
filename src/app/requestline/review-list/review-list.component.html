@@ -1,0 +1,25 @@
+<app-header [pageTitle]="pageTitle"></app-header>
+<table id="Request" class="table table-striped" *ngIf="reqs" >
+    <thead>
+        <th>Id</th>
+        <th>Description</th>
+        <th>Rejection Reason</th>
+        <th>Status</th>
+        <th>Total</th>
+        <th>Username</th>
+        <th>Actions</th>
+    </thead>
+    <tbody  *ngFor="let req of reqs">
+        <tr *ngIf="req.status == review">
+            <td>{{req.id}}</td>
+            <td>{{req.description}}</td>
+            <td>{{req.rejectionReason}}</td>
+            <td>{{req.status}}</td>
+            <td>{{req.total}}</td>
+            <td>{{req.user.username}}</td>
+            <td><a routerLink="/Review/{{req.id}}">Review</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<app-footer></app-footer>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SystemService } from 'src/app/common/system.service';
 import { Vendor } from '../vendor.class';
 import { VendorService } from '../vendor.service';
 
@@ -10,44 +11,44 @@ import { VendorService } from '../vendor.service';
 })
 export class VendorDetailComponent implements OnInit {
 
-  pageTitle: string = "Vendor Detail";
-  isDetail: boolean = true;
-  vendor!: Vendor;
-  showVerifyButton: boolean = false;
-  
+  showVerifyButton:boolean = false;
+  titlePage="Vendor Detail"
+  vend!:Vendor;
   constructor(
-    private vensvc: VendorService,
+    private vendsvc: VendorService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private syssvc: SystemService
   ) { }
 
-confirm(): void {
-  this.showVerifyButton = !this.showVerifyButton;
-}
+  warning():void{
+    this.showVerifyButton = !this.showVerifyButton
+  }
 
-verifyDelete(): void {
-  this.vensvc.remove(this.vendor.id).subscribe({
-    next: (res) => {
-      console.debug("Vendor Deleted");
-      this.router.navigateByUrl("/vendors/list");
-    },
-    error: (err) => {
-      console.error(err);
-    }
-  })
-}
-
-  ngOnInit(): void {
-    let id = this.route.snapshot.params["id"];
-    this.vensvc.get(id).subscribe({
-      next: (res) => {
-        console.debug("Vendor:", res);
-        this.vendor = res;
+  deleteConfirm():void{
+    this.vendsvc.remove(this.vend.id).subscribe({
+      next:(res)=>{
+        console.debug("Vendor Deleted")
+        this.router.navigateByUrl("/Vendors")
       },
-      error: (err) => {
-        console.error(err);
+      error:(err) =>{
+        console.error(err)
       }
     })
   }
+  
 
+  ngOnInit(): void {
+    this.syssvc.verifyUser();
+    let id = +this.route.snapshot.params["id"];
+    this.vendsvc.get(id).subscribe({
+      next:(res)=>{
+        console.log("Vendor:",res)
+        this.vend = res
+      },
+      error: (err) => {
+        console.error(err)
+      }
+    })
+  }
 }

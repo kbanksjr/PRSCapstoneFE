@@ -1,23 +1,47 @@
-nav { 
-    background-color: #454545;
+a{
+    color: rgba(255, 255, 255, 0.429);
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 25px;
+    padding-right: 25px;
+    position: relative;
+    padding-bottom: 12%;
+    padding-top: 12%;
 }
-
-ul {
-    padding-left: 5px;
-    margin: 0;
-}
-
 li{
     display: inline-block;
+    
+}
+ul{
+    padding-left: 0px;
+    color:rgb(66, 66, 66) ;
+    background-color:rgb(66, 66, 66) ;
+    
+}
+nav{
+    background-color: rgb(66, 66, 66);
 }
 
-a {
-    padding: 0 10px;
-    color: silver;
-    text-decoration: none;
-}
-
-a:hover {
+a:hover{
     color: white;
     background-color: black;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 13.5px;
+    padding-bottom: 12px;
+}
+
+.class1{
+    background-color: rgb(34, 95, 47);
+    color: azure;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+}
+
+.user{
+    color: rgb(148, 155, 163);
+    margin-left: 41.2%;
 }

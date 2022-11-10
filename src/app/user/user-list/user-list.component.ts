@@ -10,23 +10,26 @@ import { UserService } from '../user.service';
 })
 export class UserListComponent implements OnInit {
 
-  pageTitle:string = "User List";
-  users: User[] = [];
+pageTitle:string="User List"
+users:User[]=[];
+
 
   constructor(
-    private sys: SystemService,
-    private usersvc: UserService
+    private usersvc: UserService,
+    private syssvc: SystemService
   ) { }
 
   ngOnInit(): void {
+    this.syssvc.verifyUser();
     this.usersvc.list().subscribe({
       next: (res) => {
-        console.debug("Users: ", res);
-        this.users = res;
+        console.log("Users:",res)
+        this.users = res
       },
-      error: (err) => {
+      error: (err) =>{
         console.error(err);
       }
-    });
+    })
   }
+
 }

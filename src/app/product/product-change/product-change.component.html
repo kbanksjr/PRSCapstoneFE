@@ -1,49 +1,57 @@
-<div id="component">
-    <div>
-        <app-head [pageTitle]="pageTitle"></app-head>
-    </div>
+<app-header [pageTitle]="titlePage"></app-header>
+<div>
 
-    <main id="main">
-        <table class="table table-sm" *ngIf="prod">
-            <tbody *ngIf="vens">
-                <tr>
-                    <td>Id</td>
-                    <td><input [(ngModel)]="prod.id" type="number" disabled=""></td>
-                </tr>
-                <tr>
-                    <td>Part Number</td>
-                    <td><input [(ngModel)]="prod.partNbr" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td><input [(ngModel)]="prod.name" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Price</td>
-                    <td><input [(ngModel)]="prod.price" min="1" type="number" oninput="validity.valid||(value='');"></td>
-                </tr>
-                <tr>
-                    <td>Unit</td>
-                    <td><input [(ngModel)]="prod.unit" type="text"></td>
-                </tr>
-                <tr>
-                    <td>PhotoPath</td>
-                    <td><input [(ngModel)]="prod.photoPath" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Vendor</td>
-                    <td>
-                        <select [(ngModel)]="prod.vendorId">
-                            <option value="{{v.id}}" *ngFor="let v of vens">{{v.name}}</option>
-                        </select>
-                    </td>
-                </tr>
-        </tbody>
-        </table>
-        <button (click)="save()" class="btn btn-primary">Save Changes</button>
-    </main>
+    <table id="componenet" *ngIf="prod" class="table table-striped">
+        
+        <tbody>
+            <tr>
+                <td class="prop">ID</td>
+                <td><input class="id" [(ngModel)]="prod.id" type="number"  disabled></td>
+                
+            </tr>
+            <tr>
+                <td class="prop">PartNbr</td>
+    <td><input [(ngModel)]="prod.partNbr"></td>
+   </tr>
+   
+    <tr>
+    <td class="prop">Name</td>
+    <td><input [(ngModel)]="prod.name" ></td>
+   </tr>
+   
+    <tr>
+    <td class="prop">Price</td>
+    <td><input [(ngModel)]="prod.price" type="number"></td>
+   </tr>
+    
+    <tr>
+        <td class="prop">Unit</td>
+        <td><input class="phone"[(ngModel)]="prod.unit" ></td>
+    </tr>
+    
+    <tr>
+        <td class="prop">Photopath</td>
+        <td><input class="email" [(ngModel)]="prod.photopath"></td>
+   </tr>
+    
+    <tr>
 
-    <div>
-        <app-foot></app-foot>
-    </div>
+        <td class="prop">Vendor</td>
+        <td class="email">
+        
+            <select [(ngModel)]="prod.vendorId">
+            <label>{{prod.vendor.name}}</label>
+            <option *ngFor="let v of vends" value="{{v.id}}">{{v.name}}</option>
+           
+            </select>
+    </td>
+    </tr>
+        
+
+</tbody>
+
+<button class="btn btn-success"(click)="save()" style="margin-left:5%;">Save</button>
+</table>
+
 </div>
+<app-footer></app-footer>

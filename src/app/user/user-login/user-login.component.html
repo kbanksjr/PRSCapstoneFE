@@ -1,20 +1,18 @@
-<div class="mx-auto">
-    <table>
-        <tbody>
-            <tr>
-                <td>Username:</td>
-                <td><input [(ngModel)]="username" type="text"></td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td><input [(ngModel)]="password" type="password"></td>
-            </tr>
-            <tr>
-                <td>
-                    <button (click)="login()" class="btn btn-primary">Login</button>
-                </td>
-            </tr>
-        </tbody>
+<main>
+    <table class="table table-striped">
+        <th>
+            <span class="title" id="page-title">Login</span>
+        </th>
+        <tr>
+
+            
+            <input class="input" style="border: 20px; font-size: large;"[(ngModel)]="email" placeholder="Username">
+            <input class="input" [(ngModel)]="password" placeholder="Password" type="password">
+            
+        
+        </tr>
+        <button class="btn btn-primary" style="margin-left: 10.5%; margin-top: 2%; width: 220px;" (click)="login()">Login</button>
     </table>
-    <span class="text-danger font-italic">{{message}}</span>
-</div>
+    
+   <app-footer></app-footer>
+</main>

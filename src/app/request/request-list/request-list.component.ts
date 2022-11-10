@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SystemService } from 'src/app/common/system.service';
-import { Request } from '../request.class';
 import { RequestService } from '../request.service';
+import { Request } from '../request.class';
 
 @Component({
   selector: 'app-request-list',
@@ -10,24 +10,24 @@ import { RequestService } from '../request.service';
 })
 export class RequestListComponent implements OnInit {
 
-  pageTitle: string = "Request List";
-  reqs: Request[] = [];
-
+  pageTitle:string="Requests List"
+  reqs:Request[]=[];
   constructor(
-    private sys: SystemService,
     private reqsvc: RequestService,
+    private syssvc: SystemService
   ) { }
 
   ngOnInit(): void {
     this.reqsvc.list().subscribe({
       next: (res) => {
-        console.debug("Vendors:", res);
-        this.reqs = res;
+        console.log("Requests:",res)
+        this.reqs = res
       },
-      error: (err) => {
-        console.debug(err);
+      error: (err) =>{
+        console.error(err);
       }
-    });
+    })
+  }
   }
 
-}
+

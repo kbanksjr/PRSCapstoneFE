@@ -1,55 +1,58 @@
-<div id="component">
-    <div>
-        <app-head [pageTitle]="pageTitle"></app-head>
-    </div>
+<app-header [pageTitle]="titlePage"></app-header>
+<div>
 
-    <main id="main">
-        <table class="table table-sm" *ngIf="ven">
-            <tbody>
-                <tr>
-                    <td>Id</td>
-                    <td><input [(ngModel)]="ven.id" type="number" disabled></td>
-                </tr>
-                <tr>
-                    <td>Code</td>
-                    <td><input [(ngModel)]="ven.code" type="text" disabled size="40"></td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td><input [(ngModel)]="ven.name" type="text" disabled size="40"></td>
-                </tr>
-                <tr>
-                    <td>Address</td>
-                    <td><input [(ngModel)]="ven.address" type="text" disabled size="40"></td>
-                </tr>
-                <tr>
-                    <td>City</td>
-                    <td><input [(ngModel)]="ven.city" type="text" disabled size="40"></td>
-                </tr>
-                <tr>
-                    <td>State</td>
-                    <td><input [(ngModel)]="ven.state" type="text" disabled size="40"></td>
-                </tr>
-                <tr>
-                    <td>Zip</td>
-                    <td><input [(ngModel)]="ven.zip" type="text" disabled size="40"></td>
-                </tr>
-                <tr>
-                    <td>Phone</td>
-                    <td><input [(ngModel)]="ven.phone" type="text" disabled size="40"></td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><input [(ngModel)]="ven.email" type="text" disabled size="40"></td>
-                </tr>
-            </tbody>
-        </table>
-        <button (click)="toVendorChangePage()" class="btn btn-primary">Edit</button> |
-        <button (click)="toggleVerifyButton()" class="btn btn-danger">Delete</button> |
-        <button (click)="remove()" class="{{verifyButtonColor}}" [disabled]="showVerifyButton">Verify Delete</button>
-    </main>
+    <table id="componenet" *ngIf="vend" class="table table-striped">
+        
+        <tbody>
+            <tr>
+                <td class="prop">ID</td>
+                <td><input class="id" [(ngModel)]="vend.id" type="number"  disabled></td>
+                
+            </tr>
+            <tr>
+                <td class="prop">Name</td>
+    <td><input [(ngModel)]="vend.name"disabled></td>
+   </tr>
+   
+    <tr>
+    <td class="prop">Address</td>
+    <td><input [(ngModel)]="vend.address" disabled></td>
+   </tr>
+   
+    <tr>
+    <td class="prop">City</td>
+    <td><input [(ngModel)]="vend.city" disabled></td>
+   </tr>
+    
+    <tr>
+        <td class="prop">State</td>
+        <td><input class="state"[(ngModel)]="vend.state" disabled></td>
+    </tr>
+    
+    <tr>
+        <td class="prop">Zip</td>
+        <td><input class="zip" [(ngModel)]="vend.zip" disabled></td>
+   </tr>
+    
+    <tr>
+        <td class="prop">Phone</td>
+        <td><input class="phone"[(ngModel)]="vend.phone" disabled></td>
+    </tr>
+    
+    <tr>
+    <td class="prop">Email</td>
+    <td><input class="email" [(ngModel)]="vend.email" disabled></td>
+</tr>
+    
+</tbody>
 
-    <div>
-        <app-foot></app-foot>
-    </div>
+
+</table>
+<button class="btn btn-secondary" (click)="warning()" ngClass="btn-clicked" style="margin-left: 7.3%;">Delete</button>
+<span *ngIf="showVerifyButton">
+    &nbsp;
+    <span class="prop" style="margin-top: 0px;">Please click confirm to Delete &nbsp;</span>
+    <button (click)="deleteConfirm()" class="btn btn-danger">Confirm</button>
+    <p class="danger">This action can not be reversed</p>
+</span>
 </div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SystemService } from 'src/app/common/system.service';
-import { Request } from '../request.class';
 import { RequestService } from '../request.service';
+import { Request } from '../request.class';
+
 
 @Component({
   selector: 'app-request-detail',
@@ -11,53 +11,47 @@ import { RequestService } from '../request.service';
 })
 export class RequestDetailComponent implements OnInit {
 
-pageTitle: string = "Request Detail";
-req!: Request;
-IsDetailPage: boolean = true;
+  showVerifyButton:boolean = false;
+  titlePage="Request Detail";
+  req!: Request;
+  
 
+  constructor(
+    private reqsvc: RequestService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
-constructor(
-  private sys: SystemService,
-  private reqsvc: RequestService,
-  private router: Router,
-  private route: ActivatedRoute
-) { }
-
-showVerifyButton: boolean = true;
-verifyButtonColor: string = "btn btn-secondary";
-
-  toggleVerifyButton(): void {
-    this.showVerifyButton = !this.showVerifyButton;
-    this.verifyButtonColor = (this.showVerifyButton ? "btn btn-secondary" : "btn btn-danger");
+  warning():void{
+    this.showVerifyButton = !this.showVerifyButton
   }
 
-  toRequestChangePage():void {
-    this.router.navigateByUrl(`/request/change/${this.req.id}`);
-  }
-
-  remove(): void {
+  deleteConfirm():void{
     this.reqsvc.remove(this.req.id).subscribe({
-      next: (res) => {
-        console.debug("Request Deleted!");
-        this.router.navigateByUrl("/request/list");
+      next:(res)=>{
+        console.debug("Request Deleted")
+        this.router.navigateByUrl("/Requests")
       },
-      error: (err) => {
-        console.error(err);
+      error:(err) =>{
+        console.error(err)
       }
-    });
+    })
   }
 
   ngOnInit(): void {
-    let id = this.route.snapshot.params["id"];
+    let id = +this.route.snapshot.params["id"];
     this.reqsvc.get(id).subscribe({
-      next: (res) => {
-        console.debug("Request:", res);
-        this.req = res;
+      next:(res)=>{
+        console.log("Request:",res)
+        this.req = res
       },
       error: (err) => {
-        console.error(err);
+        console.error(err)
       }
-    });
+    })
+    
   }
-
 }
+
+
+

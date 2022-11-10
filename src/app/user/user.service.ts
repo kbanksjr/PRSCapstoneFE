@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { SystemService } from '../common/system.service';
 import { User } from './user.class';
 
 @Injectable({
@@ -10,35 +8,36 @@ import { User } from './user.class';
 })
 export class UserService {
 
-  baseurl: string = `${this.sys.baseurl}/users`;
 
+
+  baseurl:string="http://localhost:5000/api/Users"
+  users:User[]=[];
   constructor(
-    private sys: SystemService,
     private http: HttpClient
   ) { }
-  // add methods below
 
-  login(username: string, password: string): Observable<User> {
-    return this.http.get(`${this.baseurl}/${username}/${password}`) as Observable<User>;
+  list(): Observable<User[]>{
+    return this.http.get(`${this.baseurl}`) as Observable<User[]>
   }
 
-  list(): Observable<User[]> {
-    return this.http.get(`${this.baseurl}`) as Observable<User[]>;
+  get(id:number): Observable<User>{
+    return this.http.get(`${this.baseurl}/${id}`) as Observable<User>
   }
 
-  get(id: number): Observable<User> {
-    return this.http.get(`${this.baseurl}/${id}`) as Observable<User>;
+  create(user:User): Observable<User>{
+    return this.http.post(`${this.baseurl}`, user) as Observable<User>
+  }
+  change(user:User): Observable<User>{
+    return this.http.put(`${this.baseurl}/${user.id}`, user) as Observable<User>
+  }
+  remove(id:number): Observable<any>{
+    return this.http.delete(`${this.baseurl}/${id}`) as Observable<any>
   }
 
-  create(user: User): Observable<User> {
-    return this.http.post(`${this.baseurl}`, user) as Observable<User>;
+  login(email:string,password:string): Observable<any>{
+    return this.http.get(`${this.baseurl}/${email}/${password}`) as Observable<any>
   }
 
-  change(user: User): Observable<any> {
-    return this.http.put(`${this.baseurl}/${user.id}`, user) as Observable<any>;
-  }
-
-  remove(id: number): Observable<any> {
-    return this.http.delete(`${this.baseurl}/${id}`) as Observable<any>;
-  }
 }
+
+

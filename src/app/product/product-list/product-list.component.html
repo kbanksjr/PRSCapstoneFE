@@ -1,40 +1,28 @@
-<div id="component">
-    <div>
-        <app-head [pageTitle]="pageTitle"></app-head>
+<div id="Component">
+    <app-header [pageTitle]="pageTitle"></app-header>
+    <button class="btn btn-secondary create" routerLink="/Products/create">Create</button>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>PartNbr</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Unit</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of prods">
+                <td>{{p.id}}</td>
+                <td>{{p.partNbr}}</td>
+                <td style="text-transform: capitalize">{{p.name}}</td>
+                <td>{{p.price | currency}}</td>
+                <td>{{p.unit}}</td>
+                <td><a routerLink="/Products/detail/{{p.id}}">Detail</a> | <a routerLink="/Products/change/{{p.id}}">Edit</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <app-footer></app-footer>
     </div>
 
-    <main id="main">
-        <a routerLink="/product/create">Create New</a>
-        <table class="table table-striped table-sm">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Part Number</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Unit</th>
-                    <th>Vendor</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody *ngIf="prods">
-                <tr *ngFor="let p of prods">
-                    <td>{{p.id}}</td>
-                    <td>{{p.partNbr}}</td>
-                    <td>{{p.name}}</td>
-                    <td>{{p.price | currency}}</td>
-                    <td>{{p.unit}}</td>
-                    <td>{{p.vendor.name}}</td>
-                    <td>
-                        <a routerLink="/product/detail/{{p.id}}">Detail</a> |
-                        <a routerLink="/product/change/{{p.id}}">Edit</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-    </main>
-
-    <div>
-        <app-foot></app-foot>
-    </div>

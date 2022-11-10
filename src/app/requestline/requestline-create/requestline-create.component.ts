@@ -1,60 +1,51 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SystemService } from 'src/app/common/system.service';
-import { Product } from 'src/app/product/product.class';
-import { ProductService } from 'src/app/product/product.service';
-import { RequestLine } from '../requestline.class';
-import { RequestLineService } from '../requestline.service';
+import { Product } from '../../product/product.class';
+import { ProductService } from '../../product/product.service';
+import { Requestline } from '../requestline.class';
+import { RequestlineService } from '../requestline.service';
 
 @Component({
   selector: 'app-requestline-create',
   templateUrl: './requestline-create.component.html',
   styleUrls: ['./requestline-create.component.css']
 })
-export class RequestLineCreateComponent implements OnInit {
+export class RequestlineCreateComponent implements OnInit {
 
-  pageTitle: string = "Request Line Creator";
-  reqln: RequestLine = new RequestLine();
-  prods: Product[] = [];
 
+  Pagetitle:string="Create Request Line"
+  reql:Requestline = new Requestline;
+  prods:Product[] = [];
+  reqid:Number=this.reql.requestId
   constructor(
-    private sys: SystemService,
-    private reqlnsvc: RequestLineService,
+    private reqlsvc: RequestlineService,
     private prodsvc: ProductService,
-    private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   save(): void {
-    let id = this.route.snapshot.params["id"];
-    this.reqlnsvc.create(this.reqln).subscribe({
-      next: (res) => {
-        console.debug("Request Line Created!", res);
-        this.router.navigateByUrl(`/requestline/list/${id}`);
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
-  }
-
-  ngOnInit(): void {
-    this.getAllProducts();
-    let requestId = this.route.snapshot.params["id"];
-    this.reqln.requestId = +requestId;
-    console.debug("reqln", this.reqln);
-  }
-
-  getAllProducts(): void {
-    this.prodsvc.list().subscribe({
-      next: (res) => {
-        console.debug("Products: ", res);
-        this.prods = res;
-      },
-      error: (err) => {
-        console.error(err);
+    this.reqlsvc.create(this.reql).subscribe({
+      next:(res)=>{
+        console.log(res)
+        this.router.navigateByUrl(`/Requests/lines/${this.reql.requestId}`)
       }
     })
+  }
+
+
+  ngOnInit(): void {
+    this.prodsvc.list().subscribe({
+      next:(res)=>{
+        console.log(res)
+        this.prods=res
+      },
+      error:(err)=>{
+        console.debug(err)
+      }
+    })
+    
+    this.reql.requestId = +this.route.snapshot.params["id"];
   }
 
 }

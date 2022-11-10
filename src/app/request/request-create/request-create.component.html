@@ -1,50 +1,55 @@
-<div id="component">
-    <div>
-        <app-head [pageTitle]="pageTitle"></app-head>
-    </div>
+<app-header [pageTitle]="titlePage"></app-header>
+<main>
 
-    <main id="main">
-        <table class="table  table-sm" *ngIf="req">
-            <tbody>
-                <tr>
-                    <td>Id</td>
-                    <td><input [(ngModel)]="req.id" type="number" disabled></td>
-                </tr>
-                <tr>
-                    <td>Description</td>
-                    <td><input [(ngModel)]="req.description" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Justification</td>
-                    <td><input [(ngModel)]="req.justification" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Rejection Reason</td>
-                    <td><input [(ngModel)]="req.rejectionReason" type="text" disabled></td>
-                </tr>
-                <tr>
-                    <td>Delivery Mode</td>
-                    <td><input [(ngModel)]="req.deliveryMode" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Status</td>
-                    <td><input [(ngModel)]="req.status" type="text" disabled></td>
-                </tr>
-                <tr>
-                    <td>Total</td>
-                    <td><input [(ngModel)]="req.total" type="number" disabled></td>
-                </tr>
-                <tr>
-                    <td>User</td>
-                    <td><input value="{{user.username}}" type="text" disabled></td>
-                </tr>
-               
-            </tbody>
-        </table>
-        <button (click)="save()" class="btn btn-primary">Create Request</button>
-        </main>
+    <table *ngIf="req" class="table table-striped">
+        
+    <tbody>
+        <tr>
+            <td class="prop">Id</td>
+            <td><input class="id" [(ngModel)]="req.id" type="number"  disabled></td>
+            
+        </tr>
+        <tr>
+            <td class="prop">Description</td>
+<td><input [(ngModel)]="req.description" ></td>
+</tr>
 
-    <div>
-        <app-foot></app-foot>
-    </div>
-</div>
+<tr>
+<td class="prop">Justification</td>
+<td><input [(ngModel)]="req.justification" ></td>
+</tr>
+
+<tr>
+<td class="prop">Rejection Reason</td>
+<td><input [(ngModel)]="req.rejectionReason" disabled ></td>
+</tr>
+
+
+<tr>
+    <td class="prop">Delivery Mode</td>
+    <td><input [(ngModel)]="req.deliveryMode" ></td>
+</tr>
+
+<tr>
+    <td class="prop">Status</td>
+    <td><input [(ngModel)]="req.status" ></td>
+</tr>
+
+<tr>
+    <td class="prop">Total</td>
+    <td><input [(ngModel)]="req.total" type="number" ></td>
+</tr>
+<tr>
+    <td class="prop">UserId</td>
+    <td><input [value]="currentUsername" value="currentUsername" disabled></td>
+</tr>
+
+
+
+</tbody>
+
+
+</table>
+<button class="btn btn-secondary" style="margin-left:5%;" (click)="save()">Save Changes</button>
+
+</main>

@@ -5,8 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class BoolDisplayPipe implements PipeTransform {
 
-  transform(value: boolean): string {
-    return value ? "Yes" : "No";
+  transform(aBool: boolean, lang: string = "en"): string {
+    if(lang === "fr"){
+      return aBool ? "Oui" : "Non";
+    }
+    else
+    return aBool ? "Yes" : "No";
   }
-
 }

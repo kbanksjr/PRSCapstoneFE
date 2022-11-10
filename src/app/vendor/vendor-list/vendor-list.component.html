@@ -1,48 +1,36 @@
-<div id="component">
-    <div>
-        <app-head [pageTitle]="pageTitle"></app-head>
+<div id="Component">
+    <app-header [pageTitle]="pageTitle"></app-header>
+    <button class="btn btn-secondary create" routerLink="/Vendors/create">Create</button>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let v of vends">
+                <td>{{v.id}}</td>
+                <td>{{v.code}}</td>
+                <td style="text-transform: capitalize">{{v.name}}</td>
+                <td style="text-transform: capitalize">{{v.address}}</td>
+                <td style="text-transform: capitalize">{{v.city}}</td>
+                <td style="text-transform: capitalize">{{v.state}}</td>
+                <td>{{v.zip}}</td>
+                <td>{{v.phone}}</td>
+                <td>{{v.email}}</td>
+                <td><a routerLink="/Vendors/detail/{{v.id}}">Detail</a> | <a routerLink="/Vendors/change/{{v.id}}">Edit</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <app-footer></app-footer>
     </div>
-
-    <main id="main">
-        <a routerLink="/vendor/create">Create New</a>
-        <table class="table table-striped table-sm">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>Zip</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody *ngIf="vens">
-                <tr *ngFor="let v of vens">
-                    <td>{{v.id}}</td>
-                    <td>{{v.code}}</td>
-                    <td>{{v.name}}</td>
-                    <td>{{v.address}}</td>
-                    <td>{{v.city}}</td>
-                    <td>{{v.state}}</td>
-                    <td>{{v.zip}}</td>
-                    <td>{{v.phone}}</td>
-                    <td>{{v.email}}</td>
-                    <td>
-                        <a routerLink="/vendor/detail/{{v.id}}">Detail</a> |
-                        <a routerLink="/vendor/change/{{v.id}}">Edit</a> |
-                        <a routerLink="/vendor/po/{{v.id}}">PO</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </main>
-
-    <div>
-        <app-foot></app-foot>
-    </div>
-
-</div>
+    

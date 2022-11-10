@@ -11,28 +11,31 @@ import { VendorService } from '../vendor.service';
 })
 export class VendorCreateComponent implements OnInit {
 
-  pageTitle: string = "Vendor Creator";
-  ven: Vendor = new Vendor();
+pageTitle:string="Create Vendor"
+vend: Vendor = new Vendor();
 
-  constructor(
-    private sys: SystemService,
-    private vensvc: VendorService,
-    private router: Router,
-  ) { }
 
-  ngOnInit(): void {
-  }
+constructor(
+  private vendsvc: VendorService,
+  private syssvc: SystemService,
+  private router: Router
+) { }
 
-  save(): void {
-    this.vensvc.create(this.ven).subscribe({
+  save():void{
+    this.vendsvc.create(this.vend).subscribe({
       next: (res) => {
-        console.debug("Vendor Created!");
-        this.router.navigateByUrl("/vendor/list");
+        console.log(res);
+        this.router.navigateByUrl("/Vendors")
       },
       error: (err) => {
-        console.error(err);
+        console.debug(err);
       }
-    });
+    })
+  }
+
+
+  ngOnInit(): void {
+    this.syssvc.verifyUser();
   }
 
 }

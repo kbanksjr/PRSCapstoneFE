@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SystemService } from '../common/system.service';
 import { Product } from './product.class';
 
 @Injectable({
@@ -9,30 +8,28 @@ import { Product } from './product.class';
 })
 export class ProductService {
 
-  baseurl: string = `${this.sys.baseurl}/products`;
-
+  baseurl:string="http://localhost:5000/api/Products"
+  prods:Product[]=[];
   constructor(
-    private sys: SystemService,
     private http: HttpClient
   ) { }
 
-  list(): Observable<Product[]> {
-    return this.http.get(`${this.baseurl}`) as Observable<Product[]>;
+  list(): Observable<Product[]>{
+    return this.http.get(`${this.baseurl}`) as Observable<Product[]>
   }
 
-  get(id: number): Observable<Product> {
-    return this.http.get(`${this.baseurl}/${id}`) as Observable<Product>;
+  get(id:number): Observable<Product>{
+    return this.http.get(`${this.baseurl}/${id}`) as Observable<Product>
   }
 
-  create(prod: Product): Observable<Product> {
-    return this.http.post(`${this.baseurl}`, prod) as Observable<Product>;
+  create(prod:Product): Observable<Product>{
+    return this.http.post(`${this.baseurl}`, prod) as Observable<Product>
+  }
+  change(prod:Product): Observable<Product>{
+    return this.http.put(`${this.baseurl}/${prod.id}`, prod) as Observable<Product>
+  }
+  remove(id:number): Observable<any>{
+    return this.http.delete(`${this.baseurl}/${id}`) as Observable<any>
   }
 
-  change(prod: Product): Observable<any> {
-    return this.http.put(`${this.baseurl}/${prod.id}`, prod) as Observable<any>;
-  }
-
-  remove(id: number): Observable<any> {
-    return this.http.delete(`${this.baseurl}/${id}`) as Observable<any>;
-  }
 }

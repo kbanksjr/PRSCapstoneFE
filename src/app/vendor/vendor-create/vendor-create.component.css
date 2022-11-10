@@ -1,0 +1,57 @@
+
+td{
+    text-indent: 10px; 
+    border: 0px; 
+    width: 0px;
+  text-align: center;
+    
+  }
+  input{
+      border-radius: 20px;
+      text-align: center;
+      font-size: larger;
+      text-transform: capitalize;
+      
+  }
+  .id{
+      width: 70px;
+      color: black;
+      position: relative;
+      padding-left: 1.4%;
+  }
+  .state{
+      width:70px;
+      text-align: center;
+  }
+  .zip{
+      width: 90px;
+  }
+  .prop{
+      font-weight:bold;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      font-size: larger;
+      border: 12px;
+      border-color: black;
+      width: 100px;
+  }
+  .phone{
+      width: 170px;
+  }
+  .email{
+      width: 400px;
+      text-transform: none;
+  }
+  
+  .danger{
+      font-weight: bold;
+      color: red;
+      font-size: medium;
+      margin-left: 7%;
+  }
+  
+  button :active{
+      box-shadow: 0px;
+      top: 2px;
+      left: 1px;
+      
+  }

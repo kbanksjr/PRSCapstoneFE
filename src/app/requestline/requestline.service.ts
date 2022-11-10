@@ -1,38 +1,40 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SystemService } from '../common/system.service';
-import { RequestLine } from './requestline.class';
+import { Requestline } from './requestline.class';
+import { Request } from '../request/request.class';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RequestLineService {
-
-  baseurl: string = `${this.sys.baseurl}/requestlines`
+export class RequestlineService {
+  baseurl:string="http://localhost:5000/api/Requestlines"
+  reviewurl:string="http://localhost:5000/api/Requests/review"
+  reqlines:Requestline[]=[];
+  req!:Request;
 
   constructor(
-    private sys: SystemService,
     private http: HttpClient
   ) { }
 
-  list(): Observable<RequestLine[]> {
-    return this.http.get(`${this.baseurl}`) as Observable<RequestLine[]>;
+  list(): Observable<Requestline[]>{
+    return this.http.get(`${this.baseurl}`) as Observable<Requestline[]>
   }
 
-  get(id: number): Observable<RequestLine> {
-    return this.http.get(`${this.baseurl}/${id}`) as Observable<RequestLine>;
+  get(id:number): Observable<Requestline>{
+    return this.http.get(`${this.baseurl}/${id}`) as Observable<Requestline>
   }
 
-  create(reqln: RequestLine): Observable<RequestLine> {
-    return this.http.post(`${this.baseurl}`, reqln) as Observable<RequestLine>;
+  create(reql:Requestline): Observable<Requestline>{
+    return this.http.post(`${this.baseurl}`, reql) as Observable<Requestline>
   }
-
-  change(reqln: RequestLine): Observable<any> {
-    return this.http.put(`${this.baseurl}/${reqln.id}`, reqln) as Observable<any>;
+  change(reql:Requestline): Observable<Requestline>{
+    return this.http.put(`${this.baseurl}/${reql.id}`, reql) as Observable<Requestline>
   }
-
-  remove(id: number): Observable<any> {
-    return this.http.delete(`${this.baseurl}/${id}`) as Observable<any>;
+  remove(id:number): Observable<any>{
+    return this.http.delete(`${this.baseurl}/${id}`) as Observable<any>
+  }
+  review(req: Request): Observable<any>{
+    return this.http.put(`${this.reviewurl}/${req.id}`, req) as Observable<any>
   }
 }

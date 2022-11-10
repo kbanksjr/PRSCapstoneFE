@@ -10,32 +10,31 @@ import { UserService } from '../user.service';
 })
 export class UserLoginComponent implements OnInit {
 
-  username: string = "";
-  password: string = "";
-  message: string = "";
+  email:string="";
+  password:string="";
+  message:string="";
 
   constructor(
-    private sys: SystemService,
+    private syssvc: SystemService,
     private usersvc: UserService,
     private router: Router
   ) { }
 
-  login(): void {
-    this.sys.user = null;
-    this.usersvc.login(this.username, this.password).subscribe({
-      next: (res) => {
-        console.debug("User:", res);
-        this.sys.user = res;
-        this.router.navigateByUrl("/user/list");
+
+
+  login(): void{
+    this.usersvc.login(this.email, this.password).subscribe({
+      next:(res) => {
+        console.debug("User:", res)
+        this.router.navigateByUrl("/Users")
+        this.syssvc.user = res;
       },
       error: (err) => {
-        if(err.status === 404){
-          this.message = "Username and/or Password not found."
-        }
+        console.error(err)
+        this.message = "Email or Password not found"
       }
     })
   }
-
   ngOnInit(): void {
   }
 

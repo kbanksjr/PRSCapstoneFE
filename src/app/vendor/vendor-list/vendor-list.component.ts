@@ -10,24 +10,26 @@ import { VendorService } from '../vendor.service';
 })
 export class VendorListComponent implements OnInit {
 
-  pageTitle: string = "Vendor List";
-  vens: Vendor[] = [];
+  pageTitle:string="Vendor List"
+  vends: Vendor[] = [];
+
 
   constructor(
-    private sys: SystemService,
-    private vensvc: VendorService,
+    private vendsvc: VendorService,
+    private syssvc: SystemService
   ) { }
 
   ngOnInit(): void {
-    this.vensvc.list().subscribe({
+    this.syssvc.verifyUser();
+    this.vendsvc.list().subscribe({
       next: (res) => {
-        console.debug("Vendors:", res);
-        this.vens = res;
+        console.log("Vendors:",res)
+        this.vends = res
       },
-      error: (err) => {
-        console.debug(err);
+      error: (err) =>{
+        console.error(err);
       }
-    });
+    })
   }
 
 }

@@ -11,53 +11,46 @@ import { UserService } from '../user.service';
 })
 export class UserDetailComponent implements OnInit {
 
-  pageTitle: string = "User Detail";
-  user!: User;
-  IsDetailPage: boolean = true;
-
-
+  showVerifyButton:boolean = false;
+  titlePage="User Detail"
+  user!:User;
   constructor(
-    private sys: SystemService,
     private usersvc: UserService,
+    private route: ActivatedRoute,
     private router: Router,
-    private route: ActivatedRoute
+    private syssvc: SystemService
   ) { }
 
-  showVerifyButton: boolean = true;
-  verifyButtonColor: string = "btn btn-secondary";
 
-  toggleVerifyButton(): void {
-    this.showVerifyButton = !this.showVerifyButton;
-    this.verifyButtonColor = (this.showVerifyButton ? "btn btn-secondary" : "btn btn-danger");
+  warning():void{
+    this.showVerifyButton = !this.showVerifyButton
   }
 
-  toUserChangePage():void {
-    this.router.navigateByUrl(`/user/change/${this.user.id}`);
-  }
 
-  remove(): void {
+  deleteConfirm():void{
     this.usersvc.remove(this.user.id).subscribe({
-      next: (res) => {
-        console.debug("User Deleted!");
-        this.router.navigateByUrl("/user/list");
+      next:(res)=>{
+        console.debug("User Deleted")
+        this.router.navigateByUrl("/Users")
       },
-      error: (err) => {
-        console.error(err);
+      error:(err) =>{
+        console.error(err)
       }
-    });
+    })
   }
 
   ngOnInit(): void {
-    let id = this.route.snapshot.params["id"];
+    this.syssvc.verifyUser();
+    let id = +this.route.snapshot.params["id"];
     this.usersvc.get(id).subscribe({
-      next: (res) => {
-        console.debug("User:", res);
-        this.user = res;
+      next:(res)=>{
+        console.log("User:",res)
+        this.user = res
       },
       error: (err) => {
-        console.error(err);
+        console.error(err)
       }
-    });
+    })
   }
 
 }

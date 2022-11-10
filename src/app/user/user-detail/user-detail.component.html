@@ -1,55 +1,58 @@
-<div id="component">
-    <div>
-        <app-head [pageTitle]="pageTitle"></app-head>
-    </div>
+<app-header [pageTitle]="titlePage"></app-header>
+<div>
 
-    <main id="main">
-        <table class="table  table-sm" *ngIf="user">
-            <tbody>
-                <tr>
-                    <td>Id</td>
-                    <td><input [(ngModel)]="user.id" type="number" disabled></td>
-                </tr>
-                <tr>
-                    <td>User Name</td>
-                    <td><input [(ngModel)]="user.username" type="string" [disabled]="IsDetailPage" size="40"></td>
-                </tr>
-                <tr>
-                    <td>Password</td>
-                    <td><input [(ngModel)]="user.password" type="password" [disabled]="IsDetailPage" size="40"></td>
-                </tr>
-                <tr>
-                    <td>First Name</td>
-                    <td><input [(ngModel)]="user.firstname" type="string" [disabled]="IsDetailPage" size="40"></td>
-                </tr>
-                <tr>
-                    <td>Last Name</td>
-                    <td><input [(ngModel)]="user.lastname" type="string" [disabled]="IsDetailPage" size="40"></td>
-                </tr>
-                <tr>
-                    <td>Phone</td>
-                    <td><input [(ngModel)]="user.phone" type="string" [disabled]="IsDetailPage" size="40"></td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><input [(ngModel)]="user.email" type="string" [disabled]="IsDetailPage" size="40"></td>
-                </tr>
-                <tr>
-                    <td>Reviewer</td>
-                    <td><input [(ngModel)]="user.isReviewer" type="checkbox" [disabled]="IsDetailPage"></td>
-                </tr>
-                <tr>
-                    <td>Admin</td>
-                    <td><input [(ngModel)]="user.isAdmin" type="checkbox" [disabled]="IsDetailPage"></td>
-                </tr>
-            </tbody>
-        </table>
-        <button (click)="toUserChangePage()" class="btn btn-primary">Edit</button> |
-        <button (click)="toggleVerifyButton()" class="btn btn-danger">Delete</button> |
-            <button (click)="remove()" class="{{verifyButtonColor}}" [disabled]="showVerifyButton">Verify Delete</button>
-    </main>
+    <table id="componenet" *ngIf="user" class="table table-striped">
+        
+        <tbody>
+            <tr>
+                <td class="prop">ID</td>
+                <td><input class="id" [(ngModel)]="user.id" type="number"  disabled></td>
+                
+            </tr>
+            <tr>
+                <td class="prop">Username</td>
+    <td><input [(ngModel)]="user.username"disabled></td>
+   </tr>
+   
+    <tr>
+    <td class="prop">Firstname</td>
+    <td><input [(ngModel)]="user.firstname" disabled></td>
+   </tr>
+   
+    <tr>
+    <td class="prop">Lastname</td>
+    <td><input [(ngModel)]="user.lastname" disabled></td>
+   </tr>
+    
+    <tr>
+        <td class="prop">Phone</td>
+        <td><input class="phone"[(ngModel)]="user.phone" disabled></td>
+    </tr>
+    
+    <tr>
+        <td class="prop">Email</td>
+        <td><input class="email" [(ngModel)]="user.email" disabled></td>
+   </tr>
+    
+    <tr>
+        <td class="prop">IsReviewer</td>
+        <td><input [(ngModel)]="user.isReviewer" disabled></td>
+    </tr>
+    
+    <tr>
+    <td class="prop">IsAdmin</td>
+    <td><input [(ngModel)]="user.isAdmin" disabled></td>
+</tr>
+    
+</tbody>
 
-    <div>
-        <app-foot></app-foot>
-    </div>
+
+</table>
+<button class="btn btn-secondary" (click)="warning()" ngClass="btn-clicked" style="margin-left: 7.3%;">Delete</button>
+<span *ngIf="showVerifyButton">
+    &nbsp;
+    <span class="prop" style="margin-top: 0px;">Please click confirm to Delete &nbsp;</span>
+    <button (click)="deleteConfirm()" class="btn btn-danger">Confirm</button>
+    <p class="danger">This action can not be reversed</p>
+</span>
 </div>

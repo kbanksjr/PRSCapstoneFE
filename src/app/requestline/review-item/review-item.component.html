@@ -1,0 +1,47 @@
+<app-header [pageTitle]="pageTitle"></app-header>
+<table id="Request" class="table table-striped">
+    <thead>
+        <th>Id</th>
+        <th>Description</th>
+        <th>Rejection Reason</th>
+        <th>Status</th>
+        <th>Total</th>
+        <th>Username</th>
+    </thead>
+    <tbody *ngIf="req">
+        <tr>
+            <td>{{req.id}}</td>
+            <td>{{req.description}}</td>
+            <td>{{req.rejectionReason}}</td>
+            <td>{{req.status}}</td>
+            <td>{{req.total}}</td>
+            <td>{{req.user.username}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<table id="Request Lines" class="table table-striped">
+
+<thead>
+    <th>Request Line Id</th>
+    <th>Product Name</th>
+    <th>Product Price</th>
+    <th>Request Line Quantity</th>
+    <th>Request Line Total</th> 
+
+
+</thead>
+<tbody *ngFor="let rl of reqlines">
+    <tr *ngIf="rl.requestId == req.id">
+        <td>{{rl.id}}</td>
+        <td>{{rl.product.name}}</td>
+        <td>{{rl.product.price}}</td>
+        <td>{{rl.quantity}}</td>
+        <td>{{rl.product.price * rl.quantity}}</td>
+
+    </tr>
+</tbody>
+
+</table>
+<button class="btn btn-success" (click)="accept()">Approve</button> | <button class="btn btn-danger" (click)="rejectButton()">Deny</button> <span *ngIf="showRejectReason == true"> | <input *ngIf="showRejectReason == true" [(ngModel)]="req.rejectionReason" placeholder="Rejection Reason (required)" style="width: 280px;"> | <button *ngIf="showRejectReason == true" (click)="verifyDeny()"> Verify Deny</button></span>
+<app-footer></app-footer>

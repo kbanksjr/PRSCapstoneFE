@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { SystemService } from 'src/app/common/system.service';
-import { User } from 'src/app/user/user.class';
-import { Request } from '../request.class';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RequestService } from '../request.service';
+import { Request } from '../request.class';
+import { SystemService } from 'src/app/common/system.service';
+import { User } from '../../user/user.class';
 
 @Component({
   selector: 'app-request-create',
@@ -11,32 +11,33 @@ import { RequestService } from '../request.service';
   styleUrls: ['./request-create.component.css']
 })
 export class RequestCreateComponent implements OnInit {
-
-  pageTitle: string = "Request Creator";
-  req: Request = new Request();
-  user: User = this.sys.user;
+  showVerifyButton:boolean = false;
+  titlePage="Create Request";
+  req: Request = new Request;
+  sysuser: User = this.syssvc.user
+  currentUsername: String = this.sysuser.username
+  
 
   constructor(
-    private sys: SystemService,
     private reqsvc: RequestService,
-    private router: Router
+    private route: ActivatedRoute,
+    private router: Router,
+    private syssvc: SystemService
   ) { }
 
-  save(): void {
-    this.req.userId = +this.user.id;
+  save():void{
     this.reqsvc.create(this.req).subscribe({
-      next: (res) => {
-        console.debug("Request Created!");
-        this.router.navigateByUrl("/request/list");
+      next:(res) => {
+        console.debug("Request Changed")
+        this.router.navigateByUrl("/Requests")
       },
-      error: (err) => {
+      error:(err)=>{
         console.error(err);
       }
     })
   }
-
   ngOnInit(): void {
-    this.sys.checkLogin();
-    this.req.userId = this.sys.user.id;
+    this.req.userid = this.syssvc.user.id
   }
+
 }

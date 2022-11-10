@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SystemService } from 'src/app/common/system.service';
+import { User } from '../../user/user.class';
 import { Menu } from './menu.class';
 
 @Component({
@@ -8,20 +10,31 @@ import { Menu } from './menu.class';
 })
 export class MenuComponent implements OnInit {
 
+  user:User = this.syssvc.user;
+  actusername=this.user.username;
+  usernameDisplay:String= this.actusername; 
+  
   menus: Menu[] = [
-    new Menu ("Home", "/home"),
-    new Menu ("Users", "/user/list"),
-    new Menu ("Vendors", "/vendor/list"),
-    new Menu ("Products", "/product/list"),
-    new Menu ("Requests", "/request/list"),
-    new Menu ("Reviews", "/request/review"),
-    new Menu ("About", "/about"),
-    new Menu ("Log Out", "/user/login")
+    new Menu("Products","/Products"),
+    new Menu("Vendors","/Vendors"),
+    new Menu("Users","/Users"),
+    new Menu("Requests","/Requests"),
+    new Menu("Reviews","/Review"),
+    new Menu("About","/about"),
+    new Menu("Login","/login"),
   ]
 
-  constructor() { }
+  constructor(
+    private syssvc: SystemService
+  ) { }
 
   ngOnInit(): void {
+    this.syssvc.verifyUser();
+    if(this.syssvc.user == null){
+      this.usernameDisplay="No User Found"
+    }
+    this.usernameDisplay=this.syssvc.user.username
+    
   }
-
+  
 }
