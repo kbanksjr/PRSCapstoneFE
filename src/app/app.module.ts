@@ -15,7 +15,7 @@ import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UserCreateComponent } from './user/user-create/user-create.component';
 import { UserChangeComponent } from './user/user-change/user-change.component';
 import { HeadComponent } from './common/head/head.component';
-import { FootComponent } from './common/foot/foot.component';
+import { FootComponent } from './common/footer/foot.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { AppInitService } from './app-init.service';
 import { BoolDisplayPipe } from './common/bool-display.pipe';
@@ -33,11 +33,11 @@ import { RequestCreateComponent } from './request/request-create/request-create.
 import { RequestChangeComponent } from './request/request-change/request-change.component';
 import { RejectionPipe } from './request/rejection.pipe';
 import { RequestLineListComponent } from './requestline/requestline-list/requestline-list.component';
-import { RequestLineDetailComponent } from './requestline/requestline-detail/requestline-detail.component';
+import { RequestlineDetailComponent } from './requestline/requestline-detail/requestline-detail.component';
 import { RequestLineCreateComponent } from './requestline/requestline-create/requestline-create.component';
 import { RequestLineChangeComponent } from './requestline/requestline-change/requestline-change.component';
-import { RequestReviewComponent } from './request/request-review-list/request-review.component';
-import { RequestReviewDetailComponent } from './request/request-review-detail/request-review-detail.component';
+import { RequestReviewComponent } from './request/request-review-list/request-reviewitem.component';
+import { RequestReviewDetailComponent } from './request/request-review/request-review.component';
 
 export function startupServiceFactory(appInit: AppInitService) : Function {
   return () => appInit.getSettings();
@@ -72,11 +72,11 @@ export function startupServiceFactory(appInit: AppInitService) : Function {
     RequestChangeComponent,
     RejectionPipe,
     RequestLineListComponent,
-    RequestLineDetailComponent,
+    RequestlineDetailComponent,
     RequestLineCreateComponent,
     RequestLineChangeComponent,
-    RequestReviewComponent,
     RequestReviewDetailComponent,
+    RequestReviewComponent
   ],
   imports: [
     BrowserModule,

@@ -26,7 +26,7 @@ import { RequestCreateComponent } from './request/request-create/request-create.
 import { RequestDetailComponent } from './request/request-detail/request-detail.component';
 import { RequestChangeComponent } from './request/request-change/request-change.component';
 import { RequestReviewComponent } from './request/request-review-list/request-review.component';
-import { RequestReviewDetailComponent } from './request/request-review-detail/request-review-detail.component';
+import { RequestReviewDetailComponent } from './request/request-review/request-review-detail.component';
 
 import { RequestLineListComponent } from './requestline/requestline-list/requestline-list.component';
 import { RequestLineCreateComponent } from './requestline/requestline-create/requestline-create.component';

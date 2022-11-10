@@ -7,8 +7,8 @@ import { RequestService } from '../request.service';
 
 @Component({
   selector: 'app-request-review',
-  templateUrl: './request-review.component.html',
-  styleUrls: ['./request-review.component.css']
+  templateUrl: './request-reviewitem.component.html',
+  styleUrls: ['./request-reviewitem.component.css']
 })
 export class RequestReviewComponent implements OnInit {
 
