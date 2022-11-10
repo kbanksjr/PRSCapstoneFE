@@ -8,7 +8,7 @@ import { Product } from './product.class';
 })
 export class ProductService {
 
-  baseurl:string="http://localhost:5000/api/Products"
+  baseurl:string="http://localhost:5000/api/products"
   prods:Product[]=[];
   constructor(
     private http: HttpClient

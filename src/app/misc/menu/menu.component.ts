@@ -10,9 +10,8 @@ import { Menu } from './menu.class';
 })
 export class MenuComponent implements OnInit {
 
-  user:User = this.syssvc.user;
-  actusername=this.user.username;
-  usernameDisplay:String= this.actusername; 
+ 
+  usernameDisplay:string= ""; 
   
   menus: Menu[] = [
     new Menu("Products","/Products"),
@@ -30,9 +29,6 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.syssvc.verifyUser();
-    if(this.syssvc.user == null){
-      this.usernameDisplay="No User Found"
-    }
     this.usernameDisplay=this.syssvc.user.username
     
   }

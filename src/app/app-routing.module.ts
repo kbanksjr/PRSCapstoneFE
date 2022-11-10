@@ -34,39 +34,39 @@ const routes: Routes = [
   {path:"",redirectTo:"/login",pathMatch:"full"},
   {path:"home",component: HomeComponent},
   {path:"about",component:AboutComponent},
-  {path:"Products",component:ProductListComponent},
-  {path:"Products/change/:id",component:ProductChangeComponent},
-  {path:"Products/create",component:ProductCreateComponent},
-  {path:"Products/detail/:id",component:ProductDetailComponent},
+  {path:"products",component:ProductListComponent},
+  {path:"products/change/:id",component:ProductChangeComponent},
+  {path:"products/create",component:ProductCreateComponent},
+  {path:"products/detail/:id",component:ProductDetailComponent},
 
 
-  {path:"Users",component:UserListComponent},
-  {path:"Users/change/:id",component:UserChangeComponent},
-  {path:"Users/create",component:UserCreateComponent},
-  {path:"Users/detail/:id",component:UserDetailComponent},
+  {path:"user/list",component:UserListComponent},
+  {path:"user/change/:id",component:UserChangeComponent},
+  {path:"user/create",component:UserCreateComponent},
+  {path:"user/detail/:id",component:UserDetailComponent},
   {path:"login", component:UserLoginComponent},
 
 
-  {path:"Vendors",component:VendorListComponent},
-  {path:"Vendors/change/:id",component:VendorChangeComponent},
-  {path:"Vendors/create",component:VendorCreateComponent},
-  {path:"Vendors/detail/:id",component:VendorDetailComponent},
+  {path:"vendors",component:VendorListComponent},
+  {path:"vendors/change/:id",component:VendorChangeComponent},
+  {path:"vendors/create",component:VendorCreateComponent},
+  {path:"vendors/detail/:id",component:VendorDetailComponent},
 
 
-  {path:"Requests",component:RequestListComponent},
-  {path:"Requests/change/:id",component:RequestChangeComponent},
-  {path:"Requests/create",component:RequestCreateComponent},
-  {path:"Requests/detail/:id",component:RequestDetailComponent},
+  {path:"request",component:RequestListComponent},
+  {path:"request/change/:id",component:RequestChangeComponent},
+  {path:"request/create",component:RequestCreateComponent},
+  {path:"request/detail/:id",component:RequestDetailComponent},
   {path:"review",component:RequestReviewComponent},
 
 
-  {path:"Requests/lines/:id",component:RequestlineListComponent},
-  {path:"Requests/lines/change/:id",component:RequestlineChangeComponent},
-  {path:"Requests/lines/create/:id",component:RequestlineCreateComponent},
-  {path:"Requestlines/detail/:id",component:RequestlineDetailComponent},
+  {path:"requests/lines/:id",component:RequestlineListComponent},
+  {path:"requests/lines/change/:id",component:RequestlineChangeComponent},
+  {path:"requests/lines/create/:id",component:RequestlineCreateComponent},
+  {path:"requestlines/detail/:id",component:RequestlineDetailComponent},
   
-  {path:"Review", component: ReviewListComponent},
-  {path:"Review/:id", component: ReviewItemComponent},
+  {path:"review", component: ReviewListComponent},
+  {path:"review/:id", component: ReviewItemComponent},
 
 
   {path:"**", component:E404Component}

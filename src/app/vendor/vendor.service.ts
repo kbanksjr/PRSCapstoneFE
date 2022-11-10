@@ -9,7 +9,7 @@ import { Vendor } from './vendor.class';
 })
 export class VendorService {
 
-  baseurl:string="http://localhost:5000/api/Vendors"
+  baseurl:string="http://localhost:5000/api/vendors"
   vends: Vendor[]=[];
   constructor(
     private http:HttpClient,

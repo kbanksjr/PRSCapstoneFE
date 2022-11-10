@@ -8,7 +8,7 @@ import { Request } from './request.class';
 })
 export class RequestService {
 
-  baseurl:string="http://localhost:5000/api/Requests"
+  baseurl:string="http://localhost:5000/api/requests"
   reqs:Request[]=[];
 
   constructor(

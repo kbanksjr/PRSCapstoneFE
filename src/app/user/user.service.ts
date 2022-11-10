@@ -10,7 +10,7 @@ export class UserService {
 
 
 
-  baseurl:string="http://localhost:5000/api/Users"
+  baseurl:string="http://localhost:5000/api/users"
   users:User[]=[];
   constructor(
     private http: HttpClient

@@ -8,8 +8,8 @@ import { Request } from '../request/request.class';
   providedIn: 'root'
 })
 export class RequestlineService {
-  baseurl:string="http://localhost:5000/api/Requestlines"
-  reviewurl:string="http://localhost:5000/api/Requests/review"
+  baseurl:string="http://localhost:5000/api/requestlines"
+  reviewurl:string="http://localhost:5000/api/requests/review"
   reqlines:Requestline[]=[];
   req!:Request;
 
