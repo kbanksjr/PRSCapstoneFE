@@ -66,7 +66,7 @@ const routes: Routes = [
 
   {path:"request",component:RequestListComponent},
   {path:"request/change/:id",component:RequestChangeComponent},
-  {path:"requests/create",component:RequestCreateComponent},
+  {path:"Requests/create",component:RequestCreateComponent},
   {path:"request/detail/:id",component:RequestDetailComponent},
 
 
@@ -79,7 +79,9 @@ const routes: Routes = [
 
   {path:"requestline/:id",component:RequestlineListComponent},
   {path:"requestline/change/:id",component:RequestlineChangeComponent},
-  {path:"requestlines/create/:id",component:RequestlineCreateComponent},
+  {path:"requestline/:id/requestlines/create/:id",component:RequestlineCreateComponent},
+
+  {path:"requestline/list/:id", component:RequestlineDetailComponent}, //may mess up routing, Am I missing a route for requestline-detail?
  
 
 
