@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { SystemService } from '../common/system.service';
 import { Request } from './request.class';
 
 @Injectable({
@@ -12,6 +13,7 @@ export class RequestService {
   reqs:Request[]=[];
 
   constructor(
+    private sys: SystemService,
     private http: HttpClient
   ) { }
 
@@ -23,6 +25,10 @@ export class RequestService {
     return this.http.get(`${this.baseurl}/${id}`) as Observable<Request>
   }
 
+  getReviews(userId: number): Observable<Request[]> {
+    return this.http.get(`${this.baseurl}/review/${userId}`) as Observable<Request[]>;
+  }
+
   create(req:Request): Observable<Request>{
     return this.http.post(`${this.baseurl}`, req) as Observable<Request>
   }
@@ -31,5 +37,17 @@ export class RequestService {
   }
   remove(id:number): Observable<any>{
     return this.http.delete(`${this.baseurl}/${id}`) as Observable<any>
+  }
+
+  review(req: Request): Observable<any> {
+    return this.http.put(`${this.baseurl}/review/${req.id}`, req) as Observable<any>;
+  }
+
+  approve(req: Request): Observable<any> {
+    return this.http.put(`${this.baseurl}/approve/${req.id}`, req) as Observable<any>;
+  }
+
+  reject(req: Request): Observable<any> {
+    return this.http.put(`${this.baseurl}/reject/${req.id}`, req) as Observable<any>;
   }
 }

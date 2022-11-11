@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RequestService } from '../request.service';
 import { Request } from '../request.class';
+import { SystemService } from 'src/app/common/system.service';
 
 @Component({
   selector: 'app-request-change',
@@ -11,10 +12,11 @@ import { Request } from '../request.class';
 export class RequestChangeComponent implements OnInit {
 
   showVerifyButton:boolean = false;
-  titlePage="Request Edit";
+  titlePage: string ="Request Edit";
   req!: Request;
 
   constructor(
+    private sys: SystemService,
     private reqsvc: RequestService,
     private route: ActivatedRoute,
     private router: Router
@@ -33,10 +35,11 @@ export class RequestChangeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let id = +this.route.snapshot.params["id"];
+    this.sys.verifyUser();
+    let id = this.route.snapshot.params["id"];
     this.reqsvc.get(id).subscribe({
       next:(res)=>{
-        console.log("Request:",res)
+        console.debug("User:",res)
         this.req = res
       },
       error: (err) => {
