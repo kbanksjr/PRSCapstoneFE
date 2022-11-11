@@ -11,7 +11,6 @@ import { RequestListComponent } from './request/request-list/request-list.compon
 import { RequestDetailComponent } from './request/request-detail/request-detail.component';
 import { RequestCreateComponent } from './request/request-create/request-create.component';
 import { RequestChangeComponent } from './request/request-change/request-change.component';
-import { RequestReviewComponent } from './request/request-review/request-review.component';
 
 import { RequestlineListComponent } from './requestline/requestline-list/requestline-list.component';
 import { RequestlineDetailComponent } from './requestline/requestline-detail/requestline-detail.component';
@@ -34,8 +33,8 @@ import { AboutComponent } from './misc/about/about.component';
 import { E404Component } from './misc/e404/e404.component';
 import { MenuComponent } from './misc/menu/menu.component';
 
-import { ReviewListComponent } from './requestline/review-list/review-list.component';
-import { ReviewItemComponent } from './requestline/review-item/review-item.component';
+import { RequestReviewDetailComponent } from './request/request-review-detail/request-review-detail.component';
+import { RequestReviewComponent } from './request/request-review-list/request-review-list.component';
 
 
 const routes: Routes = [
@@ -69,7 +68,6 @@ const routes: Routes = [
   {path:"request/change/:id",component:RequestChangeComponent},
   {path:"Requests/create",component:RequestCreateComponent},
   {path:"request/detail/:id",component:RequestDetailComponent},
-  {path:"request/review",component:RequestReviewComponent},
 
 
 
@@ -78,8 +76,8 @@ const routes: Routes = [
   {path:"requests/lines/create/:id",component:RequestlineCreateComponent},
   {path:"requestline/detail/:id",component:RequestlineDetailComponent},
   
-  {path:"review", component: ReviewListComponent},
-  {path:"review/:id", component: ReviewItemComponent},
+  {path:"review", component: RequestReviewDetailComponent},
+  {path:"review/:id", component: RequestReviewComponent},
 
 
   {path:"**", component:E404Component}
