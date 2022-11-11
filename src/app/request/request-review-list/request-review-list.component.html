@@ -25,12 +25,12 @@
                     <td>{{r.total |currency}}</td>
                     <td>{{r.user.username}}</td>
                     <td>
-                        <a routerLink="/review/{{r.id}}">Review</a>
+                        <a routerLink="request/review/{{r.id}}">Review</a>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <span *ngIf="toggleReviewsMessage">{{noReviewsMessage}}</span>
+        <span >{{noReviewsMessage}}</span>
     </main>
 
     <div>

@@ -66,18 +66,21 @@ const routes: Routes = [
 
   {path:"request",component:RequestListComponent},
   {path:"request/change/:id",component:RequestChangeComponent},
-  {path:"Requests/create",component:RequestCreateComponent},
+  {path:"requests/create",component:RequestCreateComponent},
   {path:"request/detail/:id",component:RequestDetailComponent},
+
+
+  {path:"request/review", component: RequestReviewDetailComponent},
+  {path:"request/review/:id", component: RequestReviewComponent},
+
+
 
 
 
   {path:"requestline/:id",component:RequestlineListComponent},
   {path:"requestline/change/:id",component:RequestlineChangeComponent},
-  {path:"requests/lines/create/:id",component:RequestlineCreateComponent},
-  {path:"requestline/detail/:id",component:RequestlineDetailComponent},
-  
-  {path:"review", component: RequestReviewDetailComponent},
-  {path:"review/:id", component: RequestReviewComponent},
+  {path:"requestlines/create/:id",component:RequestlineCreateComponent},
+ 
 
 
   {path:"**", component:E404Component}

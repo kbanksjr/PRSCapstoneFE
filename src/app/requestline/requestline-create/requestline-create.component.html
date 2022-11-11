@@ -1,28 +1,33 @@
-<app-header [pageTitle]="Pagetitle"></app-header>
-<main>
-<table>
+<div id="component">
+    <div>
+        <app-header [pageTitle]="titlePage"></app-header>
+    </div>
 
-    <tr>
-        <td>Id</td>
-        <td><input [(ngModel)]="reql.id" disabled></td>
-    </tr>
-    <tr>
-        <td>Product</td>
-        <select [(ngModel)]="reql.productId">
-            <label></label>
-            <option *ngFor="let p of prods" value="{{p.id}}">{{p.name}}</option>
-            
-        </select>
-    </tr>
-    <tr>
-        <td>Quantity</td>
-        <td><input [(ngModel)]="reql.quantity" type="number"></td>
-    </tr>
-    
-</table>
+    <main id="main">
+        <table class="table table-sm">
+            <tbody *ngIf="prods">
+                <tr>
+                    <td>Id</td>
+                    <td><input [(ngModel)]="reqln.id" type="number" disabled></td>
+                </tr>
+                <tr>
+                    <td>Product</td>
+                    <td>
+                        <select [(ngModel)]="reqln.productId">
+                            <option value="{{p.id}}" *ngFor="let p of prods">{{p.name}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Quantity</td>
+                    <td><input [(ngModel)]="reqln.quantity" min="1" type="number" oninput="validity.valid||(value='');"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button (click)="save()" class="btn btn-primary">Create Line</button>
+    </main>
 
-<button class="btn btn-success"(click)="save()">Save</button>
-
-
-</main>
-<app-footer></app-footer>
+    <div>
+        <app-footer></app-footer>
+    </div>
+</div>
