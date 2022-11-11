@@ -24,7 +24,7 @@ export class RequestChangeComponent implements OnInit {
     this.reqsvc.change(this.req).subscribe({
       next:(res) => {
         console.debug("Request Changed")
-        this.router.navigateByUrl("/Requests")
+        this.router.navigateByUrl("/request")
       },
       error:(err)=>{
         console.error(err);

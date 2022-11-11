@@ -1,6 +1,6 @@
 <div id="Component">
     <app-header [pageTitle]="pageTitle"></app-header>
-    <button class="btn btn-secondary create" routerLink="/Users/create">Create</button>
+    <button class="btn btn-secondary create" routerLink="/users/create">Create</button>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -25,7 +25,7 @@
                 <td>{{u.email}}</td>
                 <td>{{u.isReviewer | bool}}</td>
                 <td>{{u.isAdmin | bool}}</td>
-                <td><a routerLink="/Users/detail/{{u.id}}">Detail</a> | <a routerLink="/Users/change/{{u.id}}">Edit</a></td>
+                <td><a routerLink="/user/detail/{{u.id}}">Detail</a> | <a routerLink="/user/change/{{u.id}}">Edit</a></td>
             </tr>
         </tbody>
     </table>

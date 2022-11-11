@@ -25,7 +25,7 @@ export class UserCreateComponent implements OnInit {
       this.usersvc.create(this.user).subscribe({
         next: (res) => {
           console.log(res);
-          this.router.navigateByUrl("/Users")
+          this.router.navigateByUrl("/user/list")
         },
         error: (err) => {
           console.debug(err);

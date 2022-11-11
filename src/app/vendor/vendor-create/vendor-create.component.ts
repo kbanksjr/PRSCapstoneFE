@@ -25,7 +25,7 @@ constructor(
     this.vendsvc.create(this.vend).subscribe({
       next: (res) => {
         console.log(res);
-        this.router.navigateByUrl("/Vendors")
+        this.router.navigateByUrl("/vendor")
       },
       error: (err) => {
         console.debug(err);

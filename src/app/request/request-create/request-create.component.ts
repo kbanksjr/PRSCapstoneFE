@@ -29,7 +29,7 @@ export class RequestCreateComponent implements OnInit {
     this.reqsvc.create(this.req).subscribe({
       next:(res) => {
         console.debug("Request Changed")
-        this.router.navigateByUrl("/Requests")
+        this.router.navigateByUrl("/request")
       },
       error:(err)=>{
         console.error(err);

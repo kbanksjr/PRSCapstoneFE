@@ -1,3 +1,4 @@
+<div id="component">
 <app-header [pageTitle]="titlePage"></app-header>
 <main>
 
@@ -11,17 +12,17 @@
         </tr>
         <tr>
             <td class="prop">Description</td>
-<td><input [(ngModel)]="req.description" ></td>
+    <td><input [(ngModel)]="req.description" ></td>
 </tr>
 
 <tr>
-<td class="prop">Justification</td>
-<td><input [(ngModel)]="req.justification" ></td>
+    <td class="prop">Justification</td>
+    <td><input [(ngModel)]="req.justification" ></td>
 </tr>
 
 <tr>
-<td class="prop">Rejection Reason</td>
-<td><input [(ngModel)]="req.rejectionReason" disabled ></td>
+    <td class="prop">Rejection Reason</td>
+    <td><input [(ngModel)]="req.rejectionReason" disabled ></td>
 </tr>
 
 
@@ -46,10 +47,11 @@
 
 
 
-</tbody>
+    </tbody>
 
 
-</table>
-<button class="btn btn-secondary" style="margin-left:5%;" (click)="save()">Save Changes</button>
+    </table>
+        <button class="btn btn-secondary" style="margin-left:5%;" (click)="save()">Save Changes</button>
 
-</main>
+    </main>
+</div>

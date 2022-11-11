@@ -14,11 +14,11 @@ export class MenuComponent implements OnInit {
   usernameDisplay:string= ""; 
   
   menus: Menu[] = [
-    new Menu("Products","/Products"),
-    new Menu("Vendors","/Vendors"),
-    new Menu("Users","/Users"),
-    new Menu("Requests","/Requests"),
-    new Menu("Reviews","/Review"),
+    new Menu("Products","/product"),
+    new Menu("Vendors","/vendor"),
+    new Menu("Users","/user"),
+    new Menu("Requests","/request"),
+    new Menu("Reviews","/review"),
     new Menu("About","/about"),
     new Menu("Login","/login"),
   ]

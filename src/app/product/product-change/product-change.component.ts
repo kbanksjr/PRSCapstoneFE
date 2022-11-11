@@ -31,7 +31,7 @@ export class ProductChangeComponent implements OnInit {
     this.prodsvc.change(this.prod).subscribe({
       next:(res) => {
         console.debug("Product Changed")
-        this.router.navigateByUrl("/Products")
+        this.router.navigateByUrl("/product")
       },
       error:(err)=>{
         console.error(err);

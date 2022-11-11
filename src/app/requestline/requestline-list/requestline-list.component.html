@@ -40,7 +40,7 @@
         <td>{{rl.product.price}}</td>
         <td>{{rl.quantity}}</td>
         <td>{{rl.product.price * rl.quantity}}</td>
-        <td><a routerLink="/Requests/lines/change/{{rl.id}}">Edit</a> | <a routerLink="/Requests/lines/{{req.id}}" (click)="delete(rl.id)">Delete</a></td>
+        <td><a routerLink="/requestline/change/{{rl.id}}">Edit</a> | <a routerLink="/requestline/{{req.id}}" (click)="delete(rl.id)">Delete</a></td>
     </tr>
 </tbody>
 

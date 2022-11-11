@@ -1,5 +1,6 @@
-<app-header [pageTitle]="pageTitle"></app-header>
-<div>
+<div id="component">
+    <app-header [pageTitle]="pageTitle"></app-header>
+
 
     <table id="componenet" class="table table-striped">
         
@@ -46,12 +47,12 @@
     <tr>
     <td class="prop">Admin</td>
     <td><input [(ngModel)]="user.isAdmin" type="checkbox"></td>
-</tr>
+    </tr>
     
-</tbody>
+    </tbody>
 
 
-</table>
-<button class="btn btn-success" style="margin-left: 10px;" (click)="save()">Save</button>
+    </table>
+    <button class="btn btn-success" style="margin-left: 10px;" (click)="save()">Save</button>
 
 </div>

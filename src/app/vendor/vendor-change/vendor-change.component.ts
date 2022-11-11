@@ -24,7 +24,7 @@ export class VendorChangeComponent implements OnInit {
     this.vendsvc.change(this.vend).subscribe({
       next:(res) => {
         console.debug("Vendor Changed")
-        this.router.navigateByUrl("/Vendors")
+        this.router.navigateByUrl("/vendor")
       },
       error:(err)=>{
         console.error(err);

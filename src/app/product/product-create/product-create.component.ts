@@ -28,7 +28,7 @@ export class ProductCreateComponent implements OnInit {
     this.prodsvc.create(this.prod).subscribe({
       next: (res) => {
         console.log(res);
-        this.router.navigateByUrl("/Products")
+        this.router.navigateByUrl("/product")
       },
       error: (err) => {
         console.debug(err);

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
@@ -31,39 +32,40 @@ import { ReviewListComponent } from './requestline/review-list/review-list.compo
 import { ReviewItemComponent } from './requestline/review-item/review-item.component';
 
 const routes: Routes = [
-  {path:"",redirectTo:"/login",pathMatch:"full"},
+  {path:"",redirectTo:"user/login",pathMatch:"full"},
+
   {path:"home",component: HomeComponent},
   {path:"about",component:AboutComponent},
-  {path:"products",component:ProductListComponent},
-  {path:"products/change/:id",component:ProductChangeComponent},
-  {path:"products/create",component:ProductCreateComponent},
-  {path:"products/detail/:id",component:ProductDetailComponent},
+  {path:"product",component:ProductListComponent},
+  {path:"product/change/:id",component:ProductChangeComponent},
+  {path:"product/create",component:ProductCreateComponent},
+  {path:"product/detail/:id",component:ProductDetailComponent},
 
 
   {path:"user/list",component:UserListComponent},
   {path:"user/change/:id",component:UserChangeComponent},
-  {path:"user/create",component:UserCreateComponent},
+  {path:"users/create",component:UserCreateComponent},
   {path:"user/detail/:id",component:UserDetailComponent},
   {path:"login", component:UserLoginComponent},
 
 
-  {path:"vendors",component:VendorListComponent},
-  {path:"vendors/change/:id",component:VendorChangeComponent},
-  {path:"vendors/create",component:VendorCreateComponent},
-  {path:"vendors/detail/:id",component:VendorDetailComponent},
+  {path:"vendor",component:VendorListComponent},
+  {path:"vendor/change/:id",component:VendorChangeComponent},
+  {path:"vendor/create",component:VendorCreateComponent},
+  {path:"vendor/detail/:id",component:VendorDetailComponent},
 
 
   {path:"request",component:RequestListComponent},
   {path:"request/change/:id",component:RequestChangeComponent},
-  {path:"request/create",component:RequestCreateComponent},
+  {path:"Requests/create",component:RequestCreateComponent},
   {path:"request/detail/:id",component:RequestDetailComponent},
   {path:"review",component:RequestReviewComponent},
 
 
-  {path:"requests/lines/:id",component:RequestlineListComponent},
-  {path:"requests/lines/change/:id",component:RequestlineChangeComponent},
+  {path:"requestline/:id",component:RequestlineListComponent},
+  {path:"requestline/change/:id",component:RequestlineChangeComponent},
   {path:"requests/lines/create/:id",component:RequestlineCreateComponent},
-  {path:"requestlines/detail/:id",component:RequestlineDetailComponent},
+  {path:"requestline/detail/:id",component:RequestlineDetailComponent},
   
   {path:"review", component: ReviewListComponent},
   {path:"review/:id", component: ReviewItemComponent},

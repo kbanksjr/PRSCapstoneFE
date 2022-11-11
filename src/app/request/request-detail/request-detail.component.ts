@@ -12,7 +12,7 @@ import { Request } from '../request.class';
 export class RequestDetailComponent implements OnInit {
 
   showVerifyButton:boolean = false;
-  titlePage="Request Detail";
+  titlePage="Request Detail"
   req!: Request;
   
 
@@ -30,7 +30,7 @@ export class RequestDetailComponent implements OnInit {
     this.reqsvc.remove(this.req.id).subscribe({
       next:(res)=>{
         console.debug("Request Deleted")
-        this.router.navigateByUrl("/Requests")
+        this.router.navigateByUrl("/request")
       },
       error:(err) =>{
         console.error(err)

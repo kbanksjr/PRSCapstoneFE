@@ -1,6 +1,6 @@
 <div id="Component">
     <app-header [pageTitle]="pageTitle"></app-header>
-    <button class="btn btn-secondary create" routerLink="/Products/create">Create</button>
+    <button class="btn btn-secondary create" routerLink="/product/create">Create</button>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -19,7 +19,7 @@
                 <td style="text-transform: capitalize">{{p.name}}</td>
                 <td>{{p.price | currency}}</td>
                 <td>{{p.unit}}</td>
-                <td><a routerLink="/Products/detail/{{p.id}}">Detail</a> | <a routerLink="/Products/change/{{p.id}}">Edit</a></td>
+                <td><a routerLink="/product/detail/{{p.id}}">Detail</a> | <a routerLink="/product/change/{{p.id}}">Edit</a></td>
             </tr>
         </tbody>
     </table>

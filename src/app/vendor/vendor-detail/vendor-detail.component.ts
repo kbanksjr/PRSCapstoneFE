@@ -29,7 +29,7 @@ export class VendorDetailComponent implements OnInit {
     this.vendsvc.remove(this.vend.id).subscribe({
       next:(res)=>{
         console.debug("Vendor Deleted")
-        this.router.navigateByUrl("/Vendors")
+        this.router.navigateByUrl("/vendor")
       },
       error:(err) =>{
         console.error(err)
