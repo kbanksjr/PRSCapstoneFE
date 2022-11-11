@@ -33,7 +33,7 @@ export class RequestReviewDetailComponent implements OnInit {
   approveRequest(): void {
     this.reqsvc.approve(this.req).subscribe({
       next: (res) => {
-        console.debug("Request Approved!");
+        console.debug("Request is Approved!");
         this.getRequestAndRequestLines();
       },
       error: (err) => {
@@ -45,7 +45,7 @@ export class RequestReviewDetailComponent implements OnInit {
   rejectRequest(): void {
     this.reqsvc.reject(this.req).subscribe({
       next: (res) => {
-        console.debug("Request Rejected!");
+        console.debug("Request is Rejected!");
         this.getRequestAndRequestLines();
       },
       error: (err) => {

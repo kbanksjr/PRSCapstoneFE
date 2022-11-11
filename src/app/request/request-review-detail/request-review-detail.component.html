@@ -51,7 +51,7 @@
     </main>
     <button (click)="approveRequest()" class="btn btn-success">Approve</button> |
     <button (click)="toggleRejectionReason()" class="btn btn-danger">Reject</button> |
-    <span *ngIf="rejectionReason">
+    <span >
         <input [(ngModel)]="req.rejectionReason" type="text" size="50"> |
         <button (click)="rejectRequest()" class="btn btn-danger">Confirm</button>
     </span>

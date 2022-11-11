@@ -47,18 +47,18 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody >
-                    <tr *ngFor="let rq of reqlns">
-                        <td>{{rq.id}}</td>
-                        <td>{{rq.product.name}}</td>
-                        <td>{{rq.product.price |currency}}</td>
-                        <td>{{rq.quantity}}</td>
-                        <td>{{rq.quantity * rq.product.price |currency}}</td>
-                        <td>
-                            <a class="btn btn-link" routerLink="/requestline/change/{{rq.id}}">Edit</a> |
-                            <button (click)="remove(rq.id)" id="actionButton">Delete</button>
-                        </td>
-                    </tr>
+                <tbody>
+                        <tr *ngFor="let rql of req.requestlines">
+                            <td>{{rql.id}}</td>
+                            <td>{{rql.product.name}}</td>
+                            <td>{{rql.product.price|currency}}</td>
+                            <td>{{rql.quantity}}</td>
+                            <td>{{rql.quantity*rql.product.price|currency}}</td>
+                            <td class="text-center">
+                                <button id="actionsBtn" class="btn btn-link" routerLink="/requestline/change/{{rql.id}}">Edit</button> &nbsp;|&nbsp;
+                                <button (click)="remove(rql.id)" id="actionsBtn" class="btn btn-link">Delete</button>
+                            </td>
+                        </tr>
                 </tbody>
             </table>
         </div>

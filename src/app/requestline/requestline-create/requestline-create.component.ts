@@ -13,7 +13,7 @@ import { RequestlineService } from '../requestline.service';
 })
 export class RequestlineCreateComponent implements OnInit {
 
-  titlePage: string = "Request Line Creator";
+  titlePage: string = "Create Request Line";
   reqln: Requestline = new Requestline();
   prods: Product[] = [];
 
@@ -30,7 +30,7 @@ export class RequestlineCreateComponent implements OnInit {
     this.reqlsvc.create(this.reqln).subscribe({
       next: (res) => {
         console.debug("Request Line Created!", res);
-        this.router.navigateByUrl(`/requestline/list/${id}`);
+        this.router.navigateByUrl(`/requestline/${id}`);
       },
       error: (err) => {
         console.error(err);
