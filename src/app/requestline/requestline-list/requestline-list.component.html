@@ -1,49 +1,70 @@
-<app-header [pageTitle]="pageTitle"></app-header>
-<table id="Request" class="table table-striped">
-    <thead>
-        <th>Id</th>
-        <th>Description</th>
-        <th>Rejection Reason</th>
-        <th>Status</th>
-        <th>Total</th>
-        <th>Username</th>
-        <th>Actions</th>
-    </thead>
-    <tbody *ngIf="req">
-        <tr>
-            <td>{{req.id}}</td>
-            <td>{{req.description}}</td>
-            <td>{{req.rejectionReason}}</td>
-            <td>{{req.status}}</td>
-            <td>{{req.total}}</td>
-            <td>{{req.user.username}}</td>
-            <td><a routerLink="/Requests/lines/{{req.id}}" (click)="clearReject()">Submit For Review</a></td>
-        </tr>
-    </tbody>
-</table>
-<button *ngIf="req" class="btn btn-secondary" routerLink="/Requests/lines/create/{{req.id}}">Create</button>
-<table id="Request Lines" class="table table-striped">
-
-<thead>
-    <th>Request Line Id</th>
-    <th>Product Name</th>
-    <th>Product Price</th>
-    <th>Request Line Quantity</th>
-    <th>Request Line Total</th> 
-    <th>Actions</th> 
-
-</thead>
-<tbody *ngFor="let rl of reqlines">
-    <tr *ngIf="rl.requestId == req.id">
-        <td>{{rl.id}}</td>
-        <td>{{rl.product.name}}</td>
-        <td>{{rl.product.price}}</td>
-        <td>{{rl.quantity}}</td>
-        <td>{{rl.product.price * rl.quantity}}</td>
-        <td><a routerLink="/requestline/change/{{rl.id}}">Edit</a> | <a routerLink="/requestline/{{req.id}}" (click)="delete(rl.id)">Delete</a></td>
-    </tr>
-</tbody>
-
-</table>
+<div id="component">
+    <app-header [pageTitle]="titlePage"></app-header> 
+        <table class="table table-sm table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Description</th>
+                    <th>Rejection Reason</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>User</th>
+                    <th class="text-center">Request Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="req">
+                    <td>{{req.id}}</td>
+                    <td>{{req.description}}</td>
+                    <td>{{req.rejectionReason}}</td>
+                    <td>{{req.status}}</td>
+                    <td>{{req.total|currency}}</td>
+                    <td>{{req.user.username}}</td>
+                    <td class="text-center">
+                        <button (click)="submitReview()" id="actionsBtn" class="btn btn-link">Submit for Review</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <hr>
+        <br>
+        <div id="reqlinetable">
+            <table class="table table-sm table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Line Total</th>
+                        <th class="text-center">Request Line Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="req">
+                        <tr *ngFor="let rql of req.requestlines">
+                            <td>{{rql.id}}</td>
+                            <td>{{rql.product.name}}</td>
+                            <td>{{rql.product.price|currency}}</td>
+                            <td>{{rql.quantity}}</td>
+                            <td>{{rql.quantity*rql.product.price|currency}}</td>
+                            <td class="text-center">
+                                <button id="actionsBtn" class="btn btn-link" routerLink="/requestline/change/{{rql.id}}">Edit</button> &nbsp;|&nbsp;
+                                <button (click)="reqlnDelete(rql.id)" id="actionsBtn" class="btn btn-link">Delete</button>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    <div id="cnBtn" *ngIf="req">
+        <span><a id="createnew" routerLink="/requestline/create/{{req.id}}">-> New Request Line <-</a></span>
+    </div>
+</div>
 
 <app-footer></app-footer>
+
+
+
+

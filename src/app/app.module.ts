@@ -30,12 +30,11 @@ import { HomeComponent } from './misc/home/home.component';
 import { AboutComponent } from './misc/about/about.component';
 import { E404Component } from './misc/e404/e404.component';
 import { MenuComponent } from './misc/menu/menu.component';
-import { RequestReviewComponent } from './request/request-review/request-review.component';
 import { HeaderComponent } from './common/header/header.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { BoolDisplayPipe } from './common/bool-display.pipe';
-import { ReviewListComponent } from './requestline/review-list/review-list.component';
-import { ReviewItemComponent } from './requestline/review-item/review-item.component';
+import { RequestReviewDetailComponent } from './request/request-review-detail/request-review-detail.component';
+import { RequestReviewComponent } from './request/request-review-list/request-review-list.component';
 
 @NgModule({
   declarations: [
@@ -65,12 +64,11 @@ import { ReviewItemComponent } from './requestline/review-item/review-item.compo
     AboutComponent,
     E404Component,
     MenuComponent,
-    RequestReviewComponent,
     HeaderComponent,
     FooterComponent,
     BoolDisplayPipe,
-    ReviewListComponent,
-    ReviewItemComponent
+    RequestReviewDetailComponent,
+    RequestReviewComponent
   ],
   imports: [
     BrowserModule,

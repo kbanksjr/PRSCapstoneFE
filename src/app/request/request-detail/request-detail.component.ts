@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RequestService } from '../request.service';
 import { Request } from '../request.class';
+import { SystemService } from 'src/app/common/system.service';
 
 
 @Component({
@@ -11,12 +12,15 @@ import { Request } from '../request.class';
 })
 export class RequestDetailComponent implements OnInit {
 
-  showVerifyButton:boolean = false;
+  showVerifyButton:boolean = true;
+  verifyButtonColor: string = "btn btn-secondary";
+
   titlePage="Request Detail"
   req!: Request;
   
 
   constructor(
+    private sys: SystemService,
     private reqsvc: RequestService,
     private route: ActivatedRoute,
     private router: Router
@@ -24,6 +28,7 @@ export class RequestDetailComponent implements OnInit {
 
   warning():void{
     this.showVerifyButton = !this.showVerifyButton
+    this.verifyButtonColor = (this.showVerifyButton ? "btn btn-secondary" : "btn btn-danger")
   }
 
   deleteConfirm():void{
@@ -39,7 +44,8 @@ export class RequestDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let id = +this.route.snapshot.params["id"];
+    this.sys.verifyUser();
+    let id = this.route.snapshot.params["id"];
     this.reqsvc.get(id).subscribe({
       next:(res)=>{
         console.log("Request:",res)

@@ -9,7 +9,6 @@ import { Request } from '../request/request.class';
 })
 export class RequestlineService {
   baseurl:string="http://localhost:5000/api/requestlines"
-  reviewurl:string="http://localhost:5000/api/requests/review"
   reqlines:Requestline[]=[];
   req!:Request;
 
@@ -33,8 +32,5 @@ export class RequestlineService {
   }
   remove(id:number): Observable<any>{
     return this.http.delete(`${this.baseurl}/${id}`) as Observable<any>
-  }
-  review(req: Request): Observable<any>{
-    return this.http.put(`${this.reviewurl}/${req.id}`, req) as Observable<any>
   }
 }

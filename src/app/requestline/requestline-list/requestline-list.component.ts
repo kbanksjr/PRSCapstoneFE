@@ -5,6 +5,7 @@ import { Request } from '../../request/request.class';
 import { Requestline } from '../requestline.class';
 import { ProductService } from '../../product/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { SystemService } from 'src/app/common/system.service';
 
 @Component({
   selector: 'app-requestline-list',
@@ -13,96 +14,69 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RequestlineListComponent implements OnInit {
 
-  pageTitle:string="Request Lines"
+  titlePage:string="Request Lines";
   reqlines: Requestline[] = [];
   req!: Request;
   reql!:Requestline;
+  lineTotal: number = 0;
+ 
   
   
   constructor(
+    private sys: SystemService,
     private reqlsvc:RequestlineService,
     private reqsvc:RequestService,
     private prodsvc:ProductService,
     private route: ActivatedRoute,
   ) { }
 
-  clearReject():void{
+  
+  submitReview(): void {
     this.req.rejectionReason = "";
-    this.reqsvc.change(this.req).subscribe({
-      next:(res)=>{
-      console.log(res)
-      this.review()
-      },
-      error:(err)=>{
-        console.error(err)
-      }
-    })
-  }
- 
-review():void{
-  this.reqlsvc.review(this.req).subscribe({
-    next:(res)=>{
-      console.log(res)
-      this.refresh()
-    },
-    error:(err)=>{
-      console.error(err);
-    }
-  })
-}
-
-delete(id:number):void{
-  this.reqlsvc.remove(id).subscribe({
-    next:(res)=>{
-      console.log(res)
-      this.refresh()
-    },
-    error:(err)=>{
-      console.error(err)
-    }
-  })
-}
-
-refresh():void{
-  this.reqsvc.get(this.req.id).subscribe({
-    next:(res)=>{
-      console.log(res)
-      this.req = res
-    }
-  })
-  this.reqlsvc.list().subscribe({
-    next: (res) => {
-      console.log("Requestlines:",res)
-      this.reqlines = res;
-    },
-    error: (err) => {
-      console.error(err)
-    }
-  })
-}
-
-
-  ngOnInit(): void {
-    let reqid = +this.route.snapshot.params["id"];
-    this.reqsvc.get(reqid).subscribe({
-      next:(res)=>{
-        console.log(res)
-        this.req = res
-      },
-      error:(err)=>{
-        console.error(err)
-      }
-    })
-    this.reqlsvc.list().subscribe({
+    this.reqsvc.review(this.req).subscribe({
       next: (res) => {
-        console.log("Requestlines:",res)
-        this.reqlines = res;
+        console.debug("Request reviewed");
+        this.refresh();
       },
       error: (err) => {
-        console.error(err)
+        console.error(err);
       }
-    })
+    });
   }
-    
+
+  reqlnDelete(id: number): void {
+
+    this.reqlsvc.remove(id).subscribe({
+      next: (res) => {
+        console.debug("RequestLine Deleted");
+        this.refresh();
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+  }
+
+  refresh(): void {
+    let id = +this.route.snapshot.params["id"];
+    this.reqsvc.get(id).subscribe({
+      next: (res) => {
+        console.debug("Request:", res);
+        this.req = res;
+        console.debug("Reqreqln:", this.req.requestLines);
+       
+      },
+      error: (err) => {
+          console.error(err);
+        }
+      }
+    }); 
+  }
+  
+  ngOnInit(): void {
+    this.sys.verifyUser();
+    this.refresh();
+  }
+
 
 }
