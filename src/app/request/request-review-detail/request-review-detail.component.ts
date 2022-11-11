@@ -13,10 +13,11 @@ import { RequestService } from '../request.service';
 })
 export class RequestReviewDetailComponent implements OnInit {
 
-  titlePage: string = "Request Review";
+  titlePage: string = "Request To Review";
   req!: Request;
   reqlns: Requestline[] = [];
   rejectionReason: boolean = false;
+ 
 
   constructor(
     private sys: SystemService,
@@ -66,7 +67,7 @@ export class RequestReviewDetailComponent implements OnInit {
         console.debug("Request: ", res);
         this.req = res;
         this.reqlns = this.req.requestLines;
-        console.debug("Request Lines: ", this.reqlns)
+        console.debug("RequestLines: ", this.reqlns)
       },
       error: (err) => {
         console.error(err);

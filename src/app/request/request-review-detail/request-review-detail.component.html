@@ -4,7 +4,7 @@
     </div>
 
     <main id="main">
-        <table class="table table-striped table-sm" id="request">
+        <table class="table table-striped table-sm" >
             <thead>
                 <tr>
                     <th>Id</th>
@@ -15,7 +15,7 @@
                     <th>Username</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody >
                 <tr>
                     <td>{{req.id}}</td>
                     <td>{{req.description}}</td>
@@ -27,7 +27,7 @@
             </tbody>
         </table>
 
-        <table class="table table-striped table-sm" id="requestlines">
+        <table class="table table-striped table-sm">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -38,12 +38,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let rq of reqlns">
-                    <td>{{rq.id}}</td>
-                    <td>{{rq.product.name}}</td>
-                    <td>{{rq.product.price |currency}}</td>
-                    <td>{{rq.quantity}}</td>
-                    <td>{{rq.quantity * rq.product.price |currency}}</td>
+                <tr *ngFor="let rql of req.requestLines">
+                    <td>{{rql.id}}</td>
+                    <td>{{rql.product.name}}</td>
+                    <td>{{rql.product.price |currency}}</td>
+                    <td>{{rql.quantity}}</td>
+                    <td>{{rql.quantity * rql.product.price |currency}}</td>
                 </tr>
             </tbody>
 
@@ -51,7 +51,7 @@
     </main>
     <button (click)="approveRequest()" class="btn btn-success">Approve</button> |
     <button (click)="toggleRejectionReason()" class="btn btn-danger">Reject</button> |
-    <span >
+    <span *ngIf="rejectionReason">
         <input [(ngModel)]="req.rejectionReason" type="text" size="50"> |
         <button (click)="rejectRequest()" class="btn btn-danger">Confirm</button>
     </span>
@@ -60,3 +60,4 @@
         <app-footer></app-footer>
     </div>
 </div>
+
