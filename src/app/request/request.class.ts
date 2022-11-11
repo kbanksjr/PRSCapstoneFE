@@ -11,5 +11,5 @@ export class Request{
     total:number=0;
     userid:string="";
     user!:User;
-    requestlines: Requestline[]=[];
+    requestLines: Requestline[]=[];
 }

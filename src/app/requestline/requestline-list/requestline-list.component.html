@@ -48,8 +48,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <tr *ngFor="let rql of req.requestlines">
-                            <td>{{rql.id}}</td>
+                        <tr *ngFor="let rql of req.requestLines">
+                            <td>{{req.id}}</td>
                             <td>{{rql.product.name}}</td>
                             <td>{{rql.product.price|currency}}</td>
                             <td>{{rql.quantity}}</td>

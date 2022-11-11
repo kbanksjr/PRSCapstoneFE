@@ -65,7 +65,7 @@ export class RequestReviewDetailComponent implements OnInit {
       next: (res) => {
         console.debug("Request: ", res);
         this.req = res;
-        this.reqlns = this.req.requestlines;
+        this.reqlns = this.req.requestLines;
         console.debug("Request Lines: ", this.reqlns)
       },
       error: (err) => {

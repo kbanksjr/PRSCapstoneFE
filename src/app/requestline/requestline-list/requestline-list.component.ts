@@ -61,7 +61,7 @@ export class RequestlineListComponent implements OnInit {
       next: (res) => {
         console.debug("Request: ", res);
         this.req = res;
-        this.reqlns = this.req.requestlines;
+        this.reqlns = this.req.requestLines;
         console.debug("RequestLines: ", this.reqlns);
       },
       error: (err) => {

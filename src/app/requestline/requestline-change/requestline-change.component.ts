@@ -29,7 +29,7 @@ export class RequestlineChangeComponent implements OnInit {
     this.reqlsvc.change(this.reql).subscribe({
       next: (res) => {
         console.debug("Request Line Created!", res);
-        this.router.navigateByUrl(`/requestline/list/${this.reql.requestId}`);
+        this.router.navigateByUrl(`/requestline/${this.reql.requestId}`);
       },
       error: (err) => {
         console.error(err);
